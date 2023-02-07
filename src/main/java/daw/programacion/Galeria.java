@@ -287,4 +287,28 @@ public class Galeria {
         System.out.println(AUTOR + todo[etiquetaId].getAutor());
         System.out.println(DESC + todo[etiquetaId].getDesc());
     }
+
+    public Obra[] cambiarActividad(int num, Obra[] todo) {
+        if (num == 1) {
+            visualizarObras(todo);
+        } else if (num == 2) {
+            Obra[] placeHolder = darDeAltaUnaObra(todo);
+            return placeHolder;
+        } else if (num == 3) {
+            System.out.println(SELECCIONAR_ID);
+            modificarObra(scannerInt(), todo);
+        } else if (num == 4) {
+            System.out.println(SELECCIONAR_ID);
+            visualizarDatosObra(scannerInt(), todo);
+        } else if (num == 5) {
+            System.out.println(SELECCIONAR_ID);
+            obtenerPrecio(scannerInt(), todo);
+        } else if (num == 6) {
+            System.out.println(SELECCIONAR_ID);
+            imprimirEtiqueta(scannerInt(), todo);
+        } else if (num == 0) {
+            setActivo(false);
+        }
+        return todo;
+    }
 }
