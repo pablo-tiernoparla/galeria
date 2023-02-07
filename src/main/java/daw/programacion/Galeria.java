@@ -329,4 +329,11 @@ public class Galeria {
         Obra[] exposicion = { guernica, vie, sueño, retrato, pielRoja };
         return exposicion;
     }
+
+    public void checkInputs(int num) throws IllegalArgumentException {
+        if (!(num >= 0 && num < 7)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 }
