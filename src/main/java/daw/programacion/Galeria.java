@@ -203,6 +203,15 @@ public class Galeria {
         System.out.println(DESC + todo[visualId].getDesc());
     }
 
+    public void obtenerPrecio(int precioId, Obra[] todo) {
+
+        System.out.println(NOMBRE + todo[precioId].getNombre());
+        System.out.println(ALTURA + todo[precioId].getAltura());
+        System.out.println(PESO + todo[precioId].getPeso());
+        System.out.println(PIEZAS + todo[precioId].getPiezas());
+        System.out.println(PRECIO + todo[precioId].getPrecio());
+    }
+
     public void imprimirEtiqueta(int etiquetaId, Obra[] todo) {
         System.out.println(NOMBRE + todo[etiquetaId].getNombre());
         System.out.println(AUTOR + todo[etiquetaId].getAutor());
