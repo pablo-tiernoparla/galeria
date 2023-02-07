@@ -94,8 +94,8 @@ public class Obra {
     @Override
     public String toString() {
         return "ID: " + this.id + ", Nombre: " + this.nombre + ", Autor: " + this.autor + ", Precio: " + this.precio
-                + ", Altura: "
-                + this.altura + ", Peso: " + this.peso + ", Piezas: " + this.piezas + ", Descripción: " + this.desc;
+                + ", Altura: " + this.altura + ", Peso: " + this.peso + ", Piezas: " + this.piezas + ", Descripción: "
+                + this.desc;
     }
 
     public String getTipo() {
