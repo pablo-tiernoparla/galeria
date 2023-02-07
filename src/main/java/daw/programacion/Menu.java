@@ -4,8 +4,19 @@ import static daw.programacion.Mensajes.*;
 
 public class Menu {
     public static void main(String[] args) {
-        
+        Galeria galeria = new Galeria();
 
+        Obra[] exposicion = Galeria.cargarObras();
+        Obra[] placeHolder = galeria.elegirOpcion(exposicion);
+
+        while (galeria.isActivo()) {
+            exposicion = placeHolder;
+            System.out.println(ESPACIO);
+            System.out.println(INTRO);
+            Galeria.scannerString();
+            placeHolder = galeria.elegirOpcion(exposicion);
+            
+        }
     }
 
     public void enseñarMenu() {
