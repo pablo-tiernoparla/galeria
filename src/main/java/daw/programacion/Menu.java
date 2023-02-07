@@ -15,4 +15,11 @@ public class Menu {
         }
         System.out.println(ESCOGER);
     }
+
+    public void menuModificarObra() {
+
+        for (int i = 0; i < SELECCION.length; i++) {
+            System.out.println(SELECCION[i] + ESPACIO + ATRIBUTOS[i]);
+        }
+    }
 }
