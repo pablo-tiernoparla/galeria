@@ -35,5 +35,9 @@ public class Mensajes {
     final static String ESPACIO = " ";
     final static String TIPOS_TECNICA = "Tecnica de la obra (oleo, carboncillo, acuarela o acrilica) ";
     final static String TIPOS_MATERIAL = "Material de la obra (bronce, cobre, hierro o acero) ";
+    final static int[] SELECCION = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    final static String ESPECIALIDAD = "Técnica/Material ";
+    final static String[] ATRIBUTOS = { SALIR, ID, NOMBRE, AUTOR, PRECIO, ALTURA, PESO, ESPECIALIDAD, PIEZAS, DESC, TIPO };
+
 
 }

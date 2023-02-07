@@ -142,4 +142,37 @@ public class Galeria {
         esculturaNueva.setMaterial(scannerString().toLowerCase());
         return esculturaNueva;
     }
+
+    public void modificarObra(int modId, Obra[] todo) {
+        Menu menuModificar = new Menu();
+
+        System.out.println(SELECCIONAR_MOD);
+        //crear menu nuevo
+        int modificar = scannerInt();
+        if (modificar == SELECCION[0]) {
+            return;
+        }
+        System.out.println(SELECCION_VALOR);
+        if (modificar == SELECCION[10]) {
+            //crear tipo diferente
+        } else if (modificar == SELECCION[1]) {
+            darDeAltaId(null, todo);
+        } else if (modificar == SELECCION[2]) {
+            todo[modId].setNombre(scannerString());
+        } else if (modificar == SELECCION[3]) {
+            todo[modId].setAutor(scannerString());
+        } else if (modificar == SELECCION[4]) {
+            todo[modId].setPrecio(scannerDouble());
+        } else if (modificar == SELECCION[5]) {
+            todo[modId].setAltura(scannerDouble());
+        } else if (modificar == SELECCION[6]) {
+            todo[modId].setPeso(scannerDouble());
+        } else if (modificar == SELECCION[7]) {
+            //crear especialidad diferente
+        } else if (modificar == SELECCION[8]) {
+            todo[modId].setPiezas(scannerInt());
+        } else if (modificar == SELECCION[9]) {
+            todo[modId].setDesc(scannerString());
+        }
+    }
 }
