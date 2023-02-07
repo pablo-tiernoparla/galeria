@@ -280,10 +280,10 @@ public class Galeria {
 
     public void idYaExiste(int num, Obra[] todo) throws IllegalArgumentException {
         for (int i = 0; i < todo.length; i++) {
-            if (num == todo[i].getId()) {
+            if (todo[i] == null) {
+                continue;
+            } else if (num == todo[i].getId()) {
                 throw new IllegalArgumentException();
-            } else if (todo[i] == null){
-                break;
             }
         }
     }
