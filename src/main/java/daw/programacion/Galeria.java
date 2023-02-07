@@ -202,4 +202,10 @@ public class Galeria {
         System.out.println(PIEZAS + todo[visualId].getPiezas());
         System.out.println(DESC + todo[visualId].getDesc());
     }
+
+    public void imprimirEtiqueta(int etiquetaId, Obra[] todo) {
+        System.out.println(NOMBRE + todo[etiquetaId].getNombre());
+        System.out.println(AUTOR + todo[etiquetaId].getAutor());
+        System.out.println(DESC + todo[etiquetaId].getDesc());
+    }
 }
