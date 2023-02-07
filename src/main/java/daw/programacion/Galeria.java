@@ -212,6 +212,26 @@ public class Galeria {
         System.out.println(PRECIO + todo[precioId].getPrecio());
     }
 
+    public static double toDolar(double euro) {
+        return euro / 0.99;
+    }
+
+    public double toKilo(double tonelada) {
+        return tonelada * 1000;
+    }
+
+    public double precioPorPeso(Obra[] todo, int precioId) {
+        double suma = 0;
+        if (toKilo(todo[precioId].getPeso()) > PESO_LIMITE) {
+            suma += IMPORTE_MAX;
+            System.out.println(IMPORTE_PESO + toDolar(IMPORTE_MAX));
+        } else {
+            suma += IMPORTE_MAX;
+            System.out.println(IMPORTE_PESO + toDolar(IMPORTE_MIN));
+        }
+        return suma;
+    }
+
     public void imprimirEtiqueta(int etiquetaId, Obra[] todo) {
         System.out.println(NOMBRE + todo[etiquetaId].getNombre());
         System.out.println(AUTOR + todo[etiquetaId].getAutor());
