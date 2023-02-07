@@ -319,4 +319,14 @@ public class Galeria {
         placeHolder = cambiarActividad(scannerInt(), todo);
         return placeHolder;
     }
+
+    public static Obra[] cargarObras() {
+        Pictorica guernica = new Pictorica(1, "Guernica", "P.Picasso", 1000, 5, 2, 5, "cuadro guerra civil", "Óleo");
+        Pictorica vie = new Pictorica(2, "La Vie", "P.Picasso", 200, 1, 1, 1, "óleo", "Óleo");
+        Pictorica sueño = new Pictorica(3, "El Sueño", "P.Picasso", 300, 1.3, 1, 1, "óleo", "Óleo");
+        Pictorica retrato = new Pictorica(4, "Retrato de Dora Maar", "P.Picasso", 400, 1, 0.8, 1, "óleo", "Óleo");
+        Escultura pielRoja = new Escultura(5, "El piel roja", "U.Checa", 350, 1, 0.8, 1, "escultura", "Bronce");
+        Obra[] exposicion = { guernica, vie, sueño, retrato, pielRoja };
+        return exposicion;
+    }
 }
