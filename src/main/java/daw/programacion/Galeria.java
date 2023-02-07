@@ -262,6 +262,17 @@ public class Galeria {
         return suma;
     }
 
+    public double precioFinalSinDescuento(Obra[] todo, int precioId) {
+        double suma = 0;
+        System.out.println(COMISION + toDolar(todo[precioId].getPrecio() * COMISION_GALERIA));
+        suma += (todo[precioId].getPrecio() * COMISION_GALERIA);
+        suma += precioPorPeso(todo, precioId);
+        suma += precioPorAltura(todo, precioId);
+        suma += precioPorPiezas(todo, precioId);
+        System.out.println(VENTA + toDolar(suma));
+        return suma;
+    }
+
     public void imprimirEtiqueta(int etiquetaId, Obra[] todo) {
         System.out.println(NOMBRE + todo[etiquetaId].getNombre());
         System.out.println(AUTOR + todo[etiquetaId].getAutor());
