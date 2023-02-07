@@ -210,6 +210,7 @@ public class Galeria {
         System.out.println(PESO + todo[precioId].getPeso());
         System.out.println(PIEZAS + todo[precioId].getPiezas());
         System.out.println(PRECIO + todo[precioId].getPrecio());
+        precioFinal(todo, precioId);
     }
 
     public static double toDolar(double euro) {
@@ -270,6 +271,14 @@ public class Galeria {
         suma += precioPorAltura(todo, precioId);
         suma += precioPorPiezas(todo, precioId);
         System.out.println(VENTA + toDolar(suma));
+        return suma;
+    }
+
+    public double precioFinal(Obra[] todo, int precioId) {
+        double suma = 0;
+        suma += precioFinalSinDescuento(todo, precioId);
+        suma += todo[precioId].descuento(todo, precioId);
+        System.out.println(PRECIO_FINAL + toDolar(suma));
         return suma;
     }
 
