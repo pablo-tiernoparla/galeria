@@ -25,4 +25,14 @@ public class Escultura extends Obra {
     public String toString(){
         return super.toString() + ", Tipo: " + this.tipo + ", Material: " + this.material;
     }
+
+    @Override
+    public double descuento(Obra[] todo, int precioId){
+        double suma = 0;
+        System.out.println(DESCUENTO_20 + Galeria.toDolar((todo[precioId].getPrecio() * DESCUENTO_ESC)));
+        suma += (todo[precioId].getPrecio() * DESCUENTO_ESC);
+        System.out.println(GASTOS + Galeria.toDolar(MANIPULACION));
+        suma += MANIPULACION;
+        return suma;
+    }
 }

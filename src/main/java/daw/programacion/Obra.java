@@ -129,4 +129,8 @@ public class Obra {
         this.piezas = copy.piezas;
         this.desc = copy.desc;
     }
+
+    public double descuento(Obra[] todo, int id){
+        return 0;
+    }
 }

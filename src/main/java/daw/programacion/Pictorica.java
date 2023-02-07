@@ -25,4 +25,12 @@ public class Pictorica extends Obra {
     public String toString() {
         return super.toString() + ", Tipo: " + this.tipo + ", Técnica: " + this.tecnica;
     }
+
+    @Override
+    public double descuento(Obra[] todo, int precioId) {
+        double suma = 0;
+        System.out.println(DESCUENTO_10 + Galeria.toDolar((todo[precioId].getPrecio() * DESCUENTO_PIC)));
+        suma += (todo[precioId].getPrecio() * DESCUENTO_PIC);
+        return suma;
+    }
 }
