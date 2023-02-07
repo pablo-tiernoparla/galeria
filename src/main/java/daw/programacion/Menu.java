@@ -15,6 +15,9 @@ public class Menu {
             System.out.println(INTRO);
             Galeria.scannerString();
             placeHolder = galeria.elegirOpcion(exposicion);
+            if (placeHolder[placeHolder.length-1] == null){
+                
+            }
             
         }
     }
