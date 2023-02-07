@@ -311,4 +311,12 @@ public class Galeria {
         }
         return todo;
     }
+
+    public Obra[] elegirOpcion(Obra[] todo) {
+        Obra[] placeHolder = todo;
+        Menu menuOpcion = new Menu();
+        menuOpcion.enseñarMenu();
+        placeHolder = cambiarActividad(scannerInt(), todo);
+        return placeHolder;
+    }
 }
