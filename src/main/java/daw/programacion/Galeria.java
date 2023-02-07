@@ -336,4 +336,10 @@ public class Galeria {
         }
     }
 
+    public void checkTipo(String tipo) throws IllegalArgumentException {
+        if (!(tipo.equals(PICTORICA) && tipo.equals(ESCULTURA))) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 }
