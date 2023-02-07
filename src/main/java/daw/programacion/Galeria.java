@@ -18,7 +18,7 @@ public class Galeria {
         this.activo = activo;
     }
 
-    public String scannerString() {
+    public static String scannerString() {
         Scanner scString = new Scanner(System.in);
         return scString.nextLine();
     }
@@ -147,14 +147,14 @@ public class Galeria {
         Menu menuModificar = new Menu();
 
         System.out.println(SELECCIONAR_MOD);
-        //crear menu nuevo
+        menuModificar.menuModificarObra();
         int modificar = scannerInt();
         if (modificar == SELECCION[0]) {
             return;
         }
         System.out.println(SELECCION_VALOR);
         if (modificar == SELECCION[10]) {
-            //crear tipo diferente
+            todo[modId] = todo[modId].crearTipo(scannerString().toLowerCase());
         } else if (modificar == SELECCION[1]) {
             darDeAltaId(null, todo);
         } else if (modificar == SELECCION[2]) {
