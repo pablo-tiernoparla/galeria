@@ -1,5 +1,7 @@
 package daw.programacion;
 
+import static daw.programacion.Mensajes.*;
+
 public class Escultura extends Obra {
     
     private String material;
@@ -7,7 +9,7 @@ public class Escultura extends Obra {
     public Escultura(int id, String nombre, String autor, double precio, double altura, double peso, int piezas,
             String desc, String material) {
         super(id, nombre, autor, precio, altura, peso, piezas, desc);
-        this.tipo = "escultura";
+        this.tipo = ESCULTURA;
         this.material = material;
     }
 

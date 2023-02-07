@@ -1,6 +1,7 @@
 package daw.programacion;
 
 import java.util.Scanner;
+import static daw.programacion.Mensajes.*;
 
 public class Galeria {
 
@@ -54,7 +55,7 @@ public class Galeria {
     }
 
     public void darDeAltaId(Obra obraNueva, Obra[] todo) {
-        System.out.println("id");
+        System.out.println(ID);
         int newId = scannerInt();
         obraNueva.setId(newId);
 
@@ -62,42 +63,42 @@ public class Galeria {
 
     public void darDeAltaNombre(Obra obraNueva) {
 
-        System.out.println("nombre");
+        System.out.println(NOMBRE);
         obraNueva.setNombre(scannerString());
 
     }
 
     public void darDeAltaAutor(Obra obraNueva) {
-        System.out.println("autor");
+        System.out.println(AUTOR);
         obraNueva.setAutor(scannerString());
 
     }
 
     public void darDeAltaPrecio(Obra obraNueva) {
-        System.out.println("precio");
+        System.out.println(PRECIO);
         obraNueva.setPrecio(scannerDouble());
 
     }
 
     public void darDeAltaAltura(Obra obraNueva) {
-        System.out.println("altura");
+        System.out.println(ALTURA);
         obraNueva.setAltura(scannerDouble());
 
     }
 
     public void darDeAltaPeso(Obra obraNueva) {
-        System.out.println("peso");
+        System.out.println(PESO);
         obraNueva.setPeso(scannerDouble());
 
     }
 
     public void darDeAltaPiezas(Obra obraNueva) {
-        System.out.println("piezas");
+        System.out.println(PIEZAS);
         obraNueva.setPiezas(scannerInt());
     }
 
     public void darDeAltaDesc(Obra obraNueva) {
-        System.out.println("descripcion");
+        System.out.println(DESC);
         obraNueva.setDesc(scannerString());
     }
 }
