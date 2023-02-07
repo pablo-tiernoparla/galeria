@@ -175,7 +175,7 @@ public class Galeria {
             todo[modId].setDesc(scannerString());
         }
     }
-    
+
     public Obra modificarEspecialidad(Obra[] todo, int modId) {
         if (todo[modId].getTipo().equals(ESCULTURA)) {
             Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
@@ -191,5 +191,15 @@ public class Galeria {
             return picNueva;
         }
         return null;
+    }
+
+    public void visualizarDatosObra(int visualId, Obra[] todo) {
+        System.out.println(NOMBRE + todo[visualId].getNombre());
+        System.out.println(AUTOR + todo[visualId].getAutor());
+        System.out.println(PRECIO + todo[visualId].getPrecio());
+        System.out.println(ALTURA + todo[visualId].getAltura());
+        System.out.println(PESO + todo[visualId].getPeso());
+        System.out.println(PIEZAS + todo[visualId].getPiezas());
+        System.out.println(DESC + todo[visualId].getDesc());
     }
 }
