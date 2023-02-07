@@ -232,6 +232,25 @@ public class Galeria {
         return suma;
     }
 
+    public double precioPorAltura(Obra[] todo, int precioId) {
+        double precioAltura = 0;
+        double suma = 0;
+        if (todo[precioId].getAltura() > ALTURA_LIMITE) {
+            for (int i = 0; i < todo[precioId].getPiezas(); i++) {
+                precioAltura += IMPORTE_MAX;
+                suma = precioAltura;
+            }
+            System.out.println(IMPORTE_ALTURA + toDolar(precioAltura));
+        } else {
+            for (int i = 0; i < todo[precioId].getPiezas(); i++) {
+                precioAltura += IMPORTE_MIN;
+                suma += precioAltura;
+            }
+            System.out.println(IMPORTE_ALTURA + toDolar(precioAltura));
+        }
+        return suma;
+    }
+
     public void imprimirEtiqueta(int etiquetaId, Obra[] todo) {
         System.out.println(NOMBRE + todo[etiquetaId].getNombre());
         System.out.println(AUTOR + todo[etiquetaId].getAutor());
