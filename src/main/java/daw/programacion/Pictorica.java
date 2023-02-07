@@ -22,7 +22,7 @@ public class Pictorica extends Obra {
     }
 
     public void checkTecnica(String tipo) throws IllegalArgumentException{
-        if (!(tipo == "oleo" || tipo == "carboncillo" || tipo == "acrilica" || tipo == "acuarela")) {
+        if (!(tipo == OLEO || tipo == CARBONCILLO || tipo == ACRILICA || tipo == ACUARELA)) {
             throw new IllegalArgumentException();
         }
     }

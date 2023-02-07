@@ -22,7 +22,7 @@ public class Escultura extends Obra {
     }
     
     public void checkMaterial(String tipo) throws IllegalArgumentException{
-        if (!(tipo == "bronce" || tipo == "acero" || tipo == "cobre" || tipo == "hierro")) {
+        if (!(tipo == BRONCE || tipo == ACERO || tipo == COBRE || tipo == HIERRO)) {
             throw new IllegalArgumentException();
         }
     }

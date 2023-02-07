@@ -36,6 +36,17 @@ public final class Mensajes {
     final static String ESPECIALIDAD = "Técnica/Material ";
     final static String ESPACIO = " ";
     final static String INTRO = "Presiona intro para continuar";
+    final static String COBRE = "cobre";
+    final static String BRONCE = "bronce";
+    final static String HIERRO = "hierro";
+    final static String ACERO = "acero";
+    final static String ACUARELA = "acuarela";
+    final static String ACRILICA = "acrilica";
+    final static String CARBONCILLO = "carboncillo";
+    final static String OLEO = "oleo";
+    final static int[] SELECCION = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    final static String[] ATRIBUTOS = { SALIR, ID, NOMBRE, AUTOR, PRECIO, ALTURA, PESO, ESPECIALIDAD, PIEZAS, DESC, TIPO };
+
     //precio strings
     final static String COMISION = "Comisión de la galería: ";
     final static String IMPORTE_PESO = "Importe por peso: ";
@@ -58,9 +69,6 @@ public final class Mensajes {
     final static double COMISION_GALERIA = 1.25;
     final static double DESCUENTO_PIC = 0.1;
     final static double DESCUENTO_ESC = 0.2;
-    //modificar
-    final static int[] SELECCION = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    final static String[] ATRIBUTOS = { SALIR, ID, NOMBRE, AUTOR, PRECIO, ALTURA, PESO, ESPECIALIDAD, PIEZAS, DESC, TIPO };
     //fallos
     final static String ERROR_LETRA = "Has introducido algo que no es un número";
     final static String ERROR_REINTENTAR = "Algo ha salido mal, vuelve a intentarlo";
