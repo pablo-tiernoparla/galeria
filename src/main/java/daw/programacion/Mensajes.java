@@ -33,5 +33,7 @@ public class Mensajes {
     final static String PESO = "Peso en toneladas ";
     final static String DESC = "Descripción ";
     final static String ESPACIO = " ";
+    final static String TIPOS_TECNICA = "Tecnica de la obra (oleo, carboncillo, acuarela o acrilica) ";
+    final static String TIPOS_MATERIAL = "Material de la obra (bronce, cobre, hierro o acero) ";
 
 }

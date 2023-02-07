@@ -108,13 +108,29 @@ public class Galeria {
         String tipo = scannerString().toLowerCase();
         Obra obraNueva = null;
         if (tipo.equals(PICTORICA)) {
-
+            obraNueva = darDeAltaPictorica(todo);
         } else if (tipo.equals(ESCULTURA)) {
-
+            obraNueva = darDeAltaEscultura(todo);
         } else {
             throw new IllegalArgumentException();
         }
         placeHolder[placeHolder.length - 1] = obraNueva;
         return placeHolder;
+    }
+
+    public Pictorica darDeAltaPictorica(Obra[] todo) {
+        Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
+        darDeAlta(picNueva, todo);
+        System.out.println(TIPOS_TECNICA);
+        picNueva.setTecnica(scannerString().toLowerCase());
+        return picNueva;
+    }
+
+    public Escultura darDeAltaEscultura(Obra[] todo) {
+        Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
+        darDeAlta(esculturaNueva, todo);
+        System.out.println(TIPOS_MATERIAL);
+        esculturaNueva.setMaterial(scannerString().toLowerCase());
+        return esculturaNueva;
     }
 }
