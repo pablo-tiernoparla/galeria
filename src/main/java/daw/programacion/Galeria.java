@@ -102,8 +102,17 @@ public class Galeria {
         obraNueva.setDesc(scannerString());
     }
 
+    public Obra[] aumentarColeccion(Obra[] coleccion) {
+        Obra[] coleccionNueva = new Obra[coleccion.length + 1];
+        System.arraycopy(coleccion, 0, coleccionNueva, 0, coleccion.length);
+        return coleccionNueva;
+    }
+
+    // excepcion letras y numeros
+    // excepcion id ya existe
     public Obra[] darDeAltaUnaObra(Obra[] todo) throws IllegalArgumentException {
         Obra[] placeHolder = todo;
+        placeHolder = aumentarColeccion(todo);
         System.out.println(TIPO);
         String tipo = scannerString().toLowerCase();
         Obra obraNueva = null;
