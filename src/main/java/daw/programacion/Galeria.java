@@ -251,6 +251,17 @@ public class Galeria {
         return suma;
     }
 
+    public double precioPorPiezas(Obra[] todo, int precioId) {
+        double suma = 0;
+        if (todo[precioId].getPiezas() > PIEZAS_LIMITE) {
+            for (int i = 2; i < todo[precioId].getPiezas(); i++) {
+                suma += IMPORTE_PIEZA;
+                System.out.println(IMPORTE_AD_PIEZA + i + " " + toDolar(PRECIO_PIEZA));
+            }
+        }
+        return suma;
+    }
+
     public void imprimirEtiqueta(int etiquetaId, Obra[] todo) {
         System.out.println(NOMBRE + todo[etiquetaId].getNombre());
         System.out.println(AUTOR + todo[etiquetaId].getAutor());
