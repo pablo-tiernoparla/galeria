@@ -118,4 +118,15 @@ public class Obra {
         }
         throw new IllegalArgumentException();
     }
+    
+    public void copy(Obra copy){
+        this.id = copy.id;
+        this.nombre = copy.nombre;
+        this.autor = copy.autor;
+        this.precio = copy.precio;
+        this.altura = copy.altura;
+        this.peso = copy.peso;
+        this.piezas = copy.piezas;
+        this.desc = copy.desc;
+    }
 }
