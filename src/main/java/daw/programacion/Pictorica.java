@@ -9,7 +9,7 @@ public class Pictorica extends Obra {
     public Pictorica(int id, String nombre, String autor, double precio, double altura, double peso, int piezas,
             String desc, String tecnica) {
         super(id, nombre, autor, precio, altura, peso, piezas, desc);
-        this.tipo = PICTORICA;
+        this.tipo = "pictorica";
         this.tecnica = tecnica;
     }
 
@@ -21,8 +21,14 @@ public class Pictorica extends Obra {
         this.tecnica = tecnica;
     }
 
+    public void checkTecnica(String tipo) throws IllegalArgumentException{
+        if (!(tipo == "oleo" || tipo == "carboncillo" || tipo == "acrilica" || tipo == "acuarela")) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     @Override
-    public String toString() {
+    public String toString(){
         return super.toString() + ", Tipo: " + this.tipo + ", Técnica: " + this.tecnica;
     }
 
@@ -32,5 +38,14 @@ public class Pictorica extends Obra {
         System.out.println(DESCUENTO_10 + Galeria.toDolar((todo[precioId].getPrecio() * DESCUENTO_PIC)));
         suma += (todo[precioId].getPrecio() * DESCUENTO_PIC);
         return suma;
+    }
+
+    @Override
+    public Obra modificarEspecialidad(Obra[] todo, int modId){
+        Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
+        picNueva.copy(todo[modId]);
+        System.out.println(TIPOS_TECNICA);
+        picNueva.setTecnica(Galeria.scannerString().toLowerCase());
+        return picNueva;
     }
 }

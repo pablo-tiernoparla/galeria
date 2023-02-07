@@ -1,7 +1,7 @@
 package daw.programacion;
 
-public class Mensajes {
-    // menu
+public final class Mensajes {
+    //menu
     final static String SALIR = "Salir";
     final static String VISUALIZAR = "Visualizar las obras";
     final static String DAR_ALTA = "Dar de alta una obra";
@@ -12,12 +12,12 @@ public class Mensajes {
     final static String ESCOGER = "Escoge una función";
     final static int[] SELECCION_MENU = { 0, 1, 2, 3, 4, 5, 6 };
     final static String[] OPCIONES = { SALIR, VISUALIZAR, DAR_ALTA, MODIFICAR, VER_OBRA, VER_PRECIO, ETIQUETA };
-
-    // interactividad
+ 
+    //interactividad
     final static String SELECCIONAR_ID = "Selecciona el id de la obra";
     final static String SELECCIONAR_MOD = "Selecciona qué quieres modificar de la obra";
     final static String SELECCION_VALOR = "Selecciona su nuevo valor";
-    // general
+    //general
     final static String ESCULTURA = "escultura";
     final static String PICTORICA = "pictorica";
     final static String TIPO = "Tipo (pictorica o escultura) ";
@@ -36,12 +36,8 @@ public class Mensajes {
     final static String ESPECIALIDAD = "Técnica/Material ";
     final static String ESPACIO = " ";
     final static String INTRO = "Presiona intro para continuar";
-    // modificar
-    final static int[] SELECCION = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    final static String[] ATRIBUTOS = { SALIR, ID, NOMBRE, AUTOR, PRECIO, ALTURA, PESO, ESPECIALIDAD, PIEZAS, DESC,
-            TIPO };
+    //precio strings
     final static String COMISION = "Comisión de la galería: ";
-    // strings preico
     final static String IMPORTE_PESO = "Importe por peso: ";
     final static String IMPORTE_ALTURA = "Importe por altura: ";
     final static String IMPORTE_AD_PIEZA = "Importe adicional - Pieza: ";
@@ -50,7 +46,7 @@ public class Mensajes {
     final static String DESCUENTO_20 = "Descuento 20% escultura: ";
     final static String GASTOS = "Gastos de manipulación ";
     final static String PRECIO_FINAL = "Precio final de venta: ";
-    // precio numeros
+    //precio numeros
     final static int PESO_LIMITE = 1;
     final static int ALTURA_LIMITE = 2;
     final static int PIEZAS_LIMITE = 2;
@@ -62,5 +58,11 @@ public class Mensajes {
     final static double COMISION_GALERIA = 1.25;
     final static double DESCUENTO_PIC = 0.1;
     final static double DESCUENTO_ESC = 0.2;
-
+    //modificar
+    final static int[] SELECCION = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    final static String[] ATRIBUTOS = { SALIR, ID, NOMBRE, AUTOR, PRECIO, ALTURA, PESO, ESPECIALIDAD, PIEZAS, DESC, TIPO };
+    //fallos
+    final static String ERROR_LETRA = "Has introducido algo que no es un número";
+    final static String ERROR_REINTENTAR = "Algo ha salido mal, vuelve a intentarlo";
+    final static String ERROR_NUM_MAL = "No has introducido un número correcto, vuelve a intentarlo";
 }

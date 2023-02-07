@@ -9,7 +9,7 @@ public class Escultura extends Obra {
     public Escultura(int id, String nombre, String autor, double precio, double altura, double peso, int piezas,
             String desc, String material) {
         super(id, nombre, autor, precio, altura, peso, piezas, desc);
-        this.tipo = ESCULTURA;
+        this.tipo = "escultura";
         this.material = material;
     }
 
@@ -19,6 +19,12 @@ public class Escultura extends Obra {
 
     public void setMaterial(String material) {
         this.material = material;
+    }
+    
+    public void checkMaterial(String tipo) throws IllegalArgumentException{
+        if (!(tipo == "bronce" || tipo == "acero" || tipo == "cobre" || tipo == "hierro")) {
+            throw new IllegalArgumentException();
+        }
     }
 
     @Override
@@ -34,5 +40,14 @@ public class Escultura extends Obra {
         System.out.println(GASTOS + Galeria.toDolar(MANIPULACION));
         suma += MANIPULACION;
         return suma;
+    }
+
+    @Override
+    public Obra modificarEspecialidad(Obra[] todo, int modId){
+        Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
+        esculturaNueva.copy(todo[modId]);
+        System.out.println(TIPOS_MATERIAL);
+        esculturaNueva.setMaterial(Galeria.scannerString().toLowerCase());
+        return esculturaNueva;
     }
 }

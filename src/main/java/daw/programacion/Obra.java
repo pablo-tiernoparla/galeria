@@ -96,21 +96,21 @@ public class Obra {
     @Override
     public String toString() {
         return "ID: " + this.id + ", Nombre: " + this.nombre + ", Autor: " + this.autor + ", Precio: " + this.precio
-                + ", Altura: " + this.altura + ", Peso: " + this.peso + ", Piezas: " + this.piezas + ", Descripción: "
-                + this.desc;
+                + ", Altura: "
+                + this.altura + ", Peso: " + this.peso + ", Piezas: " + this.piezas + ", Descripción: " + this.desc;
     }
 
     public String getTipo() {
         return this.tipo;
     }
 
-    public Obra crearTipo(String tipoDeseado) throws IllegalArgumentException{
-        if (tipoDeseado.equals(PICTORICA)){
+    public Obra crearTipo(String tipoDeseado) throws IllegalArgumentException {
+        if (tipoDeseado.equals(PICTORICA)) {
             Pictorica pictoricaNueva = new Pictorica(0, nombre, autor, precio, altura, peso, piezas, desc, null);
             System.out.println(TIPOS_TECNICA);
             pictoricaNueva.setTecnica(Galeria.scannerString().toLowerCase());
             return pictoricaNueva;
-        } else if (tipoDeseado.equals(ESCULTURA)){
+        } else if (tipoDeseado.equals(ESCULTURA)) {
             Escultura esculturaNueva = new Escultura(0, nombre, autor, precio, altura, peso, piezas, desc, null);
             System.out.println(TIPOS_MATERIAL);
             esculturaNueva.setMaterial(Galeria.scannerString().toLowerCase());
@@ -118,8 +118,8 @@ public class Obra {
         }
         throw new IllegalArgumentException();
     }
-    
-    public void copy(Obra copy){
+
+    public void copy(Obra copy) {
         this.id = copy.id;
         this.nombre = copy.nombre;
         this.autor = copy.autor;
@@ -130,7 +130,11 @@ public class Obra {
         this.desc = copy.desc;
     }
 
-    public double descuento(Obra[] todo, int id){
+    public double descuento(Obra[] todo, int id) {
         return 0;
+    }
+
+    public Obra modificarEspecialidad(Obra[] todo, int modId) {
+        return null;
     }
 }

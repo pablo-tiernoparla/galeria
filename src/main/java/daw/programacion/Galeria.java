@@ -1,5 +1,6 @@
 package daw.programacion;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import static daw.programacion.Mensajes.*;
 
@@ -18,19 +19,47 @@ public class Galeria {
         this.activo = activo;
     }
 
-    public static String scannerString() {
-        Scanner scString = new Scanner(System.in);
-        return scString.nextLine();
+    public Obra[] cambiarActividad(int num, Obra[] todo) throws IllegalArgumentException {
+        try {
+            checkInputs(num);
+            if (num == 1) {
+                visualizarObras(todo);
+            } else if (num == 2) {
+                Obra[] placeHolder = darDeAltaUnaObra(todo);
+                return placeHolder;
+            } else if (num == 3) {
+                System.out.println(SELECCIONAR_ID);
+                modificarObra(scannerInt(), todo);
+            } else if (num == 4) {
+                System.out.println(SELECCIONAR_ID);
+                visualizarDatosObra(scannerInt(), todo);
+            } else if (num == 5) {
+                System.out.println(SELECCIONAR_ID);
+                obtenerPrecio(scannerInt(), todo);
+            } else if (num == 6) {
+                System.out.println(SELECCIONAR_ID);
+                imprimirEtiqueta(scannerInt(), todo);
+            } else if (num == 0) {
+                setActivo(false);
+            }
+            return todo;
+        } catch (IllegalArgumentException wrongNum) {
+            System.out.println(ESPACIO);
+            System.out.println(ERROR_NUM_MAL);
+            return todo;
+        }
     }
 
-    public int scannerInt() {
-        Scanner scString = new Scanner(System.in);
-        return scString.nextInt();
-    }
-
-    public double scannerDouble() {
-        Scanner scString = new Scanner(System.in);
-        return scString.nextDouble();
+    public int findId(int num, Obra[] todo) throws IllegalArgumentException {
+        int index;
+        for (index = 0; index < todo.length; index++) {
+            if (num == todo[index].getId()) {
+                break;
+            } else if (index == todo.length - 1 && todo[todo.length - 1].getId() != index) {
+                throw new IllegalArgumentException();
+            }
+        }
+        return index;
     }
 
     public void visualizarObras(Obra[] todo) {
@@ -43,6 +72,8 @@ public class Galeria {
         }
     }
 
+    // excepcion numeros y letras
+    // excepcion id ya existe
     public void darDeAlta(Obra obraNueva, Obra[] todo) {
         darDeAltaId(obraNueva, todo);
         darDeAltaNombre(obraNueva);
@@ -57,6 +88,7 @@ public class Galeria {
     public void darDeAltaId(Obra obraNueva, Obra[] todo) {
         System.out.println(ID);
         int newId = scannerInt();
+        idYaExiste(newId, todo);
         obraNueva.setId(newId);
 
     }
@@ -110,21 +142,27 @@ public class Galeria {
 
     // excepcion letras y numeros
     // excepcion id ya existe
-    public Obra[] darDeAltaUnaObra(Obra[] todo) throws IllegalArgumentException {
+    public Obra[] darDeAltaUnaObra(Obra[] todo) throws IllegalArgumentException{
         Obra[] placeHolder = todo;
-        placeHolder = aumentarColeccion(todo);
-        System.out.println(TIPO);
-        String tipo = scannerString().toLowerCase();
-        Obra obraNueva = null;
-        if (tipo.equals(PICTORICA)) {
-            obraNueva = darDeAltaPictorica(todo);
-        } else if (tipo.equals(ESCULTURA)) {
-            obraNueva = darDeAltaEscultura(todo);
-        } else {
-            throw new IllegalArgumentException();
+        try {
+            placeHolder = aumentarColeccion(todo);
+            System.out.println(TIPO);
+            String tipo = scannerString().toLowerCase();
+            Obra obraNueva = null;
+            if (tipo.equals(PICTORICA)) {
+                obraNueva = darDeAltaPictorica(todo);
+            } else if (tipo.equals(ESCULTURA)) {
+                obraNueva = darDeAltaEscultura(todo);
+            } else {
+                throw new IllegalArgumentException();   
+            }
+            placeHolder[placeHolder.length - 1] = obraNueva;
+            return placeHolder;
+        } catch (IllegalArgumentException wrong) {
+            System.out.println(ESPACIO);
+            System.out.println(ERROR_REINTENTAR);
+            return placeHolder;
         }
-        placeHolder[placeHolder.length - 1] = obraNueva;
-        return placeHolder;
     }
 
     public Pictorica darDeAltaPictorica(Obra[] todo) {
@@ -143,8 +181,10 @@ public class Galeria {
         return esculturaNueva;
     }
 
-    public void modificarObra(int modId, Obra[] todo) {
+    // excepcion letras y numeros
+    public void modificarObra(int num, Obra[] todo) {
         Menu menuModificar = new Menu();
+        int modId = findId(num, todo);
 
         System.out.println(SELECCIONAR_MOD);
         menuModificar.menuModificarObra();
@@ -176,24 +216,8 @@ public class Galeria {
         }
     }
 
-    public Obra modificarEspecialidad(Obra[] todo, int modId) {
-        if (todo[modId].getTipo().equals(ESCULTURA)) {
-            Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
-            esculturaNueva.copy(todo[modId]);
-            System.out.println(TIPOS_MATERIAL);
-            esculturaNueva.setMaterial(scannerString().toLowerCase());
-            return esculturaNueva;
-        } else if (todo[modId].getTipo().equals(PICTORICA)) {
-            Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
-            picNueva.copy(todo[modId]);
-            System.out.println(TIPOS_TECNICA);
-            picNueva.setTecnica(scannerString().toLowerCase());
-            return picNueva;
-        }
-        return null;
-    }
-
-    public void visualizarDatosObra(int visualId, Obra[] todo) {
+    public void visualizarDatosObra(int num, Obra[] todo) {
+        int visualId = findId(num, todo);
         System.out.println(NOMBRE + todo[visualId].getNombre());
         System.out.println(AUTOR + todo[visualId].getAutor());
         System.out.println(PRECIO + todo[visualId].getPrecio());
@@ -203,7 +227,16 @@ public class Galeria {
         System.out.println(DESC + todo[visualId].getDesc());
     }
 
-    public void obtenerPrecio(int precioId, Obra[] todo) {
+    public static double toDolar(double euro) {
+        return euro / 0.99;
+    }
+
+    public double toKilo(double tonelada) {
+        return tonelada * 1000;
+    }
+
+    public void obtenerPrecio(int num, Obra[] todo) {
+        int precioId = findId(num, todo);
 
         System.out.println(NOMBRE + todo[precioId].getNombre());
         System.out.println(ALTURA + todo[precioId].getAltura());
@@ -213,12 +246,56 @@ public class Galeria {
         precioFinal(todo, precioId);
     }
 
-    public static double toDolar(double euro) {
-        return euro / 0.99;
+    public void imprimirEtiqueta(int num, Obra[] todo) {
+        int etiquetaId = findId(num, todo);
+        System.out.println(NOMBRE + todo[etiquetaId].getNombre());
+        System.out.println(AUTOR + todo[etiquetaId].getAutor());
+        System.out.println(DESC + todo[etiquetaId].getDesc());
     }
 
-    public double toKilo(double tonelada) {
-        return tonelada * 1000;
+    public Obra[] elegirOpcion(Obra[] todo) {
+        Obra[] placeHolder = todo;
+        try {
+            Menu menuOpcion = new Menu();
+            menuOpcion.enseñarMenu();
+            placeHolder = cambiarActividad(scannerInt(), todo);
+            return placeHolder;
+        } catch (InputMismatchException wasString) {
+            System.out.println(ERROR_LETRA);
+            return placeHolder;
+        }
+    }
+
+    public void checkInputs(int num) throws IllegalArgumentException {
+        if (!(num >= 0 && num < 7)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void checkTipo(String tipo) throws IllegalArgumentException {
+        if (!(tipo.equals(PICTORICA) && tipo.equals(ESCULTURA))) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void idYaExiste(int num, Obra[] todo) throws IllegalArgumentException {
+        for (int i = 0; i < todo.length; i++) {
+            if (num == todo[i].getId()) {
+                throw new IllegalArgumentException();
+            } else if (todo[i] == null){
+                break;
+            }
+        }
+    }
+
+    public static Obra[] cargarObras() {
+        Pictorica guernica = new Pictorica(1, "Guernica", "P.Picasso", 1000, 5, 2, 5, "cuadro guerra civil", "Óleo");
+        Pictorica vie = new Pictorica(2, "La Vie", "P.Picasso", 200, 1, 1, 1, "óleo", "Óleo");
+        Pictorica sueño = new Pictorica(3, "El Sueño", "P.Picasso", 300, 1.3, 1, 1, "óleo", "Óleo");
+        Pictorica retrato = new Pictorica(4, "Retrato de Dora Maar", "P.Picasso", 400, 1, 0.8, 1, "óleo", "Óleo");
+        Escultura pielRoja = new Escultura(5, "El piel roja", "U.Checa", 350, 1, 0.8, 1, "escultura", "Bronce");
+        Obra[] exposicion = { guernica, vie, sueño, retrato, pielRoja };
+        return exposicion;
     }
 
     public double precioPorPeso(Obra[] todo, int precioId) {
@@ -282,73 +359,35 @@ public class Galeria {
         return suma;
     }
 
-    public void imprimirEtiqueta(int etiquetaId, Obra[] todo) {
-        System.out.println(NOMBRE + todo[etiquetaId].getNombre());
-        System.out.println(AUTOR + todo[etiquetaId].getAutor());
-        System.out.println(DESC + todo[etiquetaId].getDesc());
-    }
-
-    public Obra[] cambiarActividad(int num, Obra[] todo) {
-        if (num == 1) {
-            visualizarObras(todo);
-        } else if (num == 2) {
-            Obra[] placeHolder = darDeAltaUnaObra(todo);
-            return placeHolder;
-        } else if (num == 3) {
-            System.out.println(SELECCIONAR_ID);
-            modificarObra(scannerInt(), todo);
-        } else if (num == 4) {
-            System.out.println(SELECCIONAR_ID);
-            visualizarDatosObra(scannerInt(), todo);
-        } else if (num == 5) {
-            System.out.println(SELECCIONAR_ID);
-            obtenerPrecio(scannerInt(), todo);
-        } else if (num == 6) {
-            System.out.println(SELECCIONAR_ID);
-            imprimirEtiqueta(scannerInt(), todo);
-        } else if (num == 0) {
-            setActivo(false);
+    public Obra modificarEspecialidad(Obra[] todo, int modId) {
+        if (todo[modId].getTipo().equals(ESCULTURA)) {
+            Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
+            esculturaNueva.copy(todo[modId]);
+            System.out.println(TIPOS_MATERIAL);
+            esculturaNueva.setMaterial(scannerString().toLowerCase());
+            return esculturaNueva;
+        } else if (todo[modId].getTipo().equals(PICTORICA)) {
+            Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
+            picNueva.copy(todo[modId]);
+            System.out.println(TIPOS_TECNICA);
+            picNueva.setTecnica(scannerString().toLowerCase());
+            return picNueva;
         }
-        return todo;
+        return null;
     }
 
-    public Obra[] elegirOpcion(Obra[] todo) {
-        Obra[] placeHolder = todo;
-        Menu menuOpcion = new Menu();
-        menuOpcion.enseñarMenu();
-        placeHolder = cambiarActividad(scannerInt(), todo);
-        return placeHolder;
+    public static String scannerString() {
+        Scanner scString = new Scanner(System.in);
+        return scString.nextLine();
     }
 
-    public static Obra[] cargarObras() {
-        Pictorica guernica = new Pictorica(1, "Guernica", "P.Picasso", 1000, 5, 2, 5, "cuadro guerra civil", "Óleo");
-        Pictorica vie = new Pictorica(2, "La Vie", "P.Picasso", 200, 1, 1, 1, "óleo", "Óleo");
-        Pictorica sueño = new Pictorica(3, "El Sueño", "P.Picasso", 300, 1.3, 1, 1, "óleo", "Óleo");
-        Pictorica retrato = new Pictorica(4, "Retrato de Dora Maar", "P.Picasso", 400, 1, 0.8, 1, "óleo", "Óleo");
-        Escultura pielRoja = new Escultura(5, "El piel roja", "U.Checa", 350, 1, 0.8, 1, "escultura", "Bronce");
-        Obra[] exposicion = { guernica, vie, sueño, retrato, pielRoja };
-        return exposicion;
+    public int scannerInt() {
+        Scanner scString = new Scanner(System.in);
+        return scString.nextInt();
     }
 
-    public void checkInputs(int num) throws IllegalArgumentException {
-        if (!(num >= 0 && num < 7)) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public void checkTipo(String tipo) throws IllegalArgumentException {
-        if (!(tipo.equals(PICTORICA) && tipo.equals(ESCULTURA))) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public void idYaExiste(int num, Obra[] todo) throws IllegalArgumentException {
-        for (int i = 0; i < todo.length; i++) {
-            if (num == todo[i].getId()) {
-                throw new IllegalArgumentException();
-            } else if (todo[i] == null){
-                break;
-            }
-        }
+    public double scannerDouble() {
+        Scanner scString = new Scanner(System.in);
+        return scString.nextDouble();
     }
 }
