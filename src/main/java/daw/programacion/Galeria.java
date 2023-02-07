@@ -101,4 +101,20 @@ public class Galeria {
         System.out.println(DESC);
         obraNueva.setDesc(scannerString());
     }
+
+    public Obra[] darDeAltaUnaObra(Obra[] todo) throws IllegalArgumentException {
+        Obra[] placeHolder = todo;
+        System.out.println(TIPO);
+        String tipo = scannerString().toLowerCase();
+        Obra obraNueva = null;
+        if (tipo.equals(PICTORICA)) {
+
+        } else if (tipo.equals(ESCULTURA)) {
+
+        } else {
+            throw new IllegalArgumentException();
+        }
+        placeHolder[placeHolder.length - 1] = obraNueva;
+        return placeHolder;
+    }
 }
