@@ -72,5 +72,6 @@ public final class Mensajes {
     //fallos
     final static String ERROR_LETRA = "Has introducido algo que no es un número";
     final static String ERROR_REINTENTAR = "Algo ha salido mal, vuelve a intentarlo";
-    final static String ERROR_NUM_MAL = "No has introducido un número correcto, vuelve a intentarlo";
+    final static String ERROR_NUM_MAL = "No has introducido un valor correcto, vuelve a intentarlo";
+    final static String ERROR_TIPO = "Has seleccionado una técnica o material erróneos";
 }

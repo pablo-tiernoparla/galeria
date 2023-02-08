@@ -142,7 +142,7 @@ public class Galeria {
 
     // excepcion letras y numeros
     // excepcion id ya existe
-    public Obra[] darDeAltaUnaObra(Obra[] todo) throws IllegalArgumentException{
+    public Obra[] darDeAltaUnaObra(Obra[] todo) throws IllegalArgumentException {
         Obra[] placeHolder = todo;
         try {
             placeHolder = aumentarColeccion(todo);
@@ -154,7 +154,7 @@ public class Galeria {
             } else if (tipo.equals(ESCULTURA)) {
                 obraNueva = darDeAltaEscultura(todo);
             } else {
-                throw new IllegalArgumentException();   
+                throw new IllegalArgumentException();
             }
             placeHolder[placeHolder.length - 1] = obraNueva;
             return placeHolder;
@@ -167,22 +167,34 @@ public class Galeria {
 
     public Pictorica darDeAltaPictorica(Obra[] todo) {
         Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
-        darDeAlta(picNueva, todo);
-        System.out.println(TIPOS_TECNICA);
-        String tipo = scannerString().toLowerCase();
-        picNueva.check(tipo);
-        picNueva.setTecnica(tipo);
-        return picNueva;
+        try {
+            darDeAlta(picNueva, todo);
+            System.out.println(TIPOS_TECNICA);
+            String tipo = scannerString().toLowerCase();
+            picNueva.check(tipo);
+            picNueva.setTecnica(tipo);
+            return picNueva;
+        } catch (IllegalArgumentException wrongTipo) {
+            System.out.println(ESPACIO);
+            System.out.println(ERROR_TIPO);
+            return picNueva;
+        }
     }
 
     public Escultura darDeAltaEscultura(Obra[] todo) {
         Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
-        darDeAlta(esculturaNueva, todo);
-        System.out.println(TIPOS_MATERIAL);
-        String tipo = scannerString().toLowerCase();
-        esculturaNueva.check(tipo);
-        esculturaNueva.setMaterial(tipo);
-        return esculturaNueva;
+        try {
+            darDeAlta(esculturaNueva, todo);
+            System.out.println(TIPOS_MATERIAL);
+            String tipo = scannerString().toLowerCase();
+            esculturaNueva.check(tipo);
+            esculturaNueva.setMaterial(tipo);
+            return esculturaNueva;
+        } catch (IllegalArgumentException wrongTipo) {
+            System.out.println(ESPACIO);
+            System.out.println(ERROR_TIPO);
+            return esculturaNueva;
+        }
     }
 
     // excepcion letras y numeros
