@@ -169,7 +169,9 @@ public class Galeria {
         Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
         darDeAlta(picNueva, todo);
         System.out.println(TIPOS_TECNICA);
-        picNueva.setTecnica(scannerString().toLowerCase());
+        String tipo = scannerString().toLowerCase();
+        picNueva.check(tipo);
+        picNueva.setTecnica(tipo);
         return picNueva;
     }
 
@@ -177,7 +179,9 @@ public class Galeria {
         Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
         darDeAlta(esculturaNueva, todo);
         System.out.println(TIPOS_MATERIAL);
-        esculturaNueva.setMaterial(scannerString().toLowerCase());
+        String tipo = scannerString().toLowerCase();
+        esculturaNueva.check(tipo);
+        esculturaNueva.setMaterial(tipo);
         return esculturaNueva;
     }
 

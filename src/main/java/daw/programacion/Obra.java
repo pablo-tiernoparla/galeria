@@ -137,4 +137,8 @@ public class Obra {
     public Obra modificarEspecialidad(Obra[] todo, int modId) {
         return null;
     }
+
+    public void check(String tipo){
+        return;
+    }
 }

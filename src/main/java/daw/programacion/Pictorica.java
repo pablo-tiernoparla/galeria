@@ -21,7 +21,8 @@ public class Pictorica extends Obra {
         this.tecnica = tecnica;
     }
 
-    public void checkTecnica(String tipo) throws IllegalArgumentException{
+    @Override
+    public void check(String tipo) throws IllegalArgumentException{
         if (!(tipo == OLEO || tipo == CARBONCILLO || tipo == ACRILICA || tipo == ACUARELA)) {
             throw new IllegalArgumentException();
         }

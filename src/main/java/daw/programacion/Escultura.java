@@ -21,7 +21,8 @@ public class Escultura extends Obra {
         this.material = material;
     }
     
-    public void checkMaterial(String tipo) throws IllegalArgumentException{
+    @Override
+    public void check(String tipo) throws IllegalArgumentException{
         if (!(tipo == BRONCE || tipo == ACERO || tipo == COBRE || tipo == HIERRO)) {
             throw new IllegalArgumentException();
         }
