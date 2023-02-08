@@ -108,12 +108,12 @@ public class Obra {
         if (tipoDeseado.equals(PICTORICA)) {
             Pictorica pictoricaNueva = new Pictorica(0, nombre, autor, precio, altura, peso, piezas, desc, null);
             System.out.println(TIPOS_TECNICA);
-            pictoricaNueva.setTecnica(Galeria.scannerString().toLowerCase());
+            pictoricaNueva.setTecnica(Menu.scannerString().toLowerCase());
             return pictoricaNueva;
         } else if (tipoDeseado.equals(ESCULTURA)) {
             Escultura esculturaNueva = new Escultura(0, nombre, autor, precio, altura, peso, piezas, desc, null);
             System.out.println(TIPOS_MATERIAL);
-            esculturaNueva.setMaterial(Galeria.scannerString().toLowerCase());
+            esculturaNueva.setMaterial(Menu.scannerString().toLowerCase());
             return esculturaNueva;
         }
         throw new IllegalArgumentException();

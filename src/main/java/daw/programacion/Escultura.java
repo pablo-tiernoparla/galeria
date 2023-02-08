@@ -48,7 +48,7 @@ public class Escultura extends Obra {
         Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
         esculturaNueva.copy(todo[modId]);
         System.out.println(TIPOS_MATERIAL);
-        esculturaNueva.setMaterial(Galeria.scannerString().toLowerCase());
+        esculturaNueva.setMaterial(Menu.scannerString().toLowerCase());
         return esculturaNueva;
     }
 }

@@ -1,5 +1,6 @@
 package daw.programacion;
 
+import java.util.Scanner;
 import static daw.programacion.Mensajes.*;
 
 public class Menu {
@@ -13,11 +14,8 @@ public class Menu {
             exposicion = placeHolder;
             System.out.println(ESPACIO);
             System.out.println(INTRO);
-            Galeria.scannerString();
+            scannerString();
             placeHolder = galeria.elegirOpcion(exposicion);
-            if (placeHolder[placeHolder.length-1] == null){
-                
-            }
             
         }
     }
@@ -35,5 +33,20 @@ public class Menu {
         for (int i = 0; i < SELECCION.length; i++) {
             System.out.println(SELECCION[i] + ESPACIO + ATRIBUTOS[i]);
         }
+    }
+
+    public static String scannerString() {
+        Scanner scString = new Scanner(System.in);
+        return scString.nextLine();
+    }
+
+    public static int scannerInt() {
+        Scanner scString = new Scanner(System.in);
+        return scString.nextInt();
+    }
+
+    public static double scannerDouble() {
+        Scanner scString = new Scanner(System.in);
+        return scString.nextDouble();
     }
 }

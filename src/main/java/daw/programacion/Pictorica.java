@@ -46,7 +46,7 @@ public class Pictorica extends Obra {
         Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
         picNueva.copy(todo[modId]);
         System.out.println(TIPOS_TECNICA);
-        picNueva.setTecnica(Galeria.scannerString().toLowerCase());
+        picNueva.setTecnica(Menu.scannerString().toLowerCase());
         return picNueva;
     }
 }

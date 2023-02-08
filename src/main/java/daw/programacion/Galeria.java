@@ -1,7 +1,6 @@
 package daw.programacion;
 
 import java.util.InputMismatchException;
-import java.util.Scanner;
 import static daw.programacion.Mensajes.*;
 
 public class Galeria {
@@ -29,16 +28,16 @@ public class Galeria {
                 return placeHolder;
             } else if (num == 3) {
                 System.out.println(SELECCIONAR_ID);
-                modificarObra(scannerInt(), todo);
+                modificarObra(Menu.scannerInt(), todo);
             } else if (num == 4) {
                 System.out.println(SELECCIONAR_ID);
-                visualizarDatosObra(scannerInt(), todo);
+                visualizarDatosObra(Menu.scannerInt(), todo);
             } else if (num == 5) {
                 System.out.println(SELECCIONAR_ID);
-                obtenerPrecio(scannerInt(), todo);
+                obtenerPrecio(Menu.scannerInt(), todo);
             } else if (num == 6) {
                 System.out.println(SELECCIONAR_ID);
-                imprimirEtiqueta(scannerInt(), todo);
+                imprimirEtiqueta(Menu.scannerInt(), todo);
             } else if (num == 0) {
                 setActivo(false);
             }
@@ -87,7 +86,7 @@ public class Galeria {
 
     public void darDeAltaId(Obra obraNueva, Obra[] todo) {
         System.out.println(ID);
-        int newId = scannerInt();
+        int newId = Menu.scannerInt();
         idYaExiste(newId, todo);
         obraNueva.setId(newId);
 
@@ -96,42 +95,42 @@ public class Galeria {
     public void darDeAltaNombre(Obra obraNueva) {
 
         System.out.println(NOMBRE);
-        obraNueva.setNombre(scannerString());
+        obraNueva.setNombre(Menu.scannerString());
 
     }
 
     public void darDeAltaAutor(Obra obraNueva) {
         System.out.println(AUTOR);
-        obraNueva.setAutor(scannerString());
+        obraNueva.setAutor(Menu.scannerString());
 
     }
 
     public void darDeAltaPrecio(Obra obraNueva) {
         System.out.println(PRECIO);
-        obraNueva.setPrecio(scannerDouble());
+        obraNueva.setPrecio(Menu.scannerDouble());
 
     }
 
     public void darDeAltaAltura(Obra obraNueva) {
         System.out.println(ALTURA);
-        obraNueva.setAltura(scannerDouble());
+        obraNueva.setAltura(Menu.scannerDouble());
 
     }
 
     public void darDeAltaPeso(Obra obraNueva) {
         System.out.println(PESO);
-        obraNueva.setPeso(scannerDouble());
+        obraNueva.setPeso(Menu.scannerDouble());
 
     }
 
     public void darDeAltaPiezas(Obra obraNueva) {
         System.out.println(PIEZAS);
-        obraNueva.setPiezas(scannerInt());
+        obraNueva.setPiezas(Menu.scannerInt());
     }
 
     public void darDeAltaDesc(Obra obraNueva) {
         System.out.println(DESC);
-        obraNueva.setDesc(scannerString());
+        obraNueva.setDesc(Menu.scannerString());
     }
 
     public Obra[] aumentarColeccion(Obra[] coleccion) {
@@ -147,7 +146,7 @@ public class Galeria {
         try {
             placeHolder = aumentarColeccion(todo);
             System.out.println(TIPO);
-            String tipo = scannerString().toLowerCase();
+            String tipo = Menu.scannerString().toLowerCase();
             Obra obraNueva = null;
             if (tipo.equals(PICTORICA)) {
                 obraNueva = darDeAltaPictorica(todo);
@@ -170,7 +169,7 @@ public class Galeria {
         try {
             darDeAlta(picNueva, todo);
             System.out.println(TIPOS_TECNICA);
-            String tipo = scannerString().toLowerCase();
+            String tipo = Menu.scannerString().toLowerCase();
             picNueva.check(tipo);
             picNueva.setTecnica(tipo);
             return picNueva;
@@ -186,7 +185,7 @@ public class Galeria {
         try {
             darDeAlta(esculturaNueva, todo);
             System.out.println(TIPOS_MATERIAL);
-            String tipo = scannerString().toLowerCase();
+            String tipo = Menu.scannerString().toLowerCase();
             esculturaNueva.check(tipo);
             esculturaNueva.setMaterial(tipo);
             return esculturaNueva;
@@ -204,31 +203,31 @@ public class Galeria {
 
         System.out.println(SELECCIONAR_MOD);
         menuModificar.menuModificarObra();
-        int modificar = scannerInt();
+        int modificar = Menu.scannerInt();
         if (modificar == SELECCION[0]) {
             return;
         }
         System.out.println(SELECCION_VALOR);
         if (modificar == SELECCION[10]) {
-            todo[modId] = todo[modId].crearTipo(scannerString().toLowerCase());
+            todo[modId] = todo[modId].crearTipo(Menu.scannerString().toLowerCase());
         } else if (modificar == SELECCION[1]) {
             darDeAltaId(null, todo);
         } else if (modificar == SELECCION[2]) {
-            todo[modId].setNombre(scannerString());
+            todo[modId].setNombre(Menu.scannerString());
         } else if (modificar == SELECCION[3]) {
-            todo[modId].setAutor(scannerString());
+            todo[modId].setAutor(Menu.scannerString());
         } else if (modificar == SELECCION[4]) {
-            todo[modId].setPrecio(scannerDouble());
+            todo[modId].setPrecio(Menu.scannerDouble());
         } else if (modificar == SELECCION[5]) {
-            todo[modId].setAltura(scannerDouble());
+            todo[modId].setAltura(Menu.scannerDouble());
         } else if (modificar == SELECCION[6]) {
-            todo[modId].setPeso(scannerDouble());
+            todo[modId].setPeso(Menu.scannerDouble());
         } else if (modificar == SELECCION[7]) {
             todo[modId] = modificarEspecialidad(todo, modId);
         } else if (modificar == SELECCION[8]) {
-            todo[modId].setPiezas(scannerInt());
+            todo[modId].setPiezas(Menu.scannerInt());
         } else if (modificar == SELECCION[9]) {
-            todo[modId].setDesc(scannerString());
+            todo[modId].setDesc(Menu.scannerString());
         }
     }
 
@@ -274,7 +273,7 @@ public class Galeria {
         try {
             Menu menuOpcion = new Menu();
             menuOpcion.enseñarMenu();
-            placeHolder = cambiarActividad(scannerInt(), todo);
+            placeHolder = cambiarActividad(Menu.scannerInt(), todo);
             return placeHolder;
         } catch (InputMismatchException wasString) {
             System.out.println(ERROR_LETRA);
@@ -380,30 +379,15 @@ public class Galeria {
             Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
             esculturaNueva.copy(todo[modId]);
             System.out.println(TIPOS_MATERIAL);
-            esculturaNueva.setMaterial(scannerString().toLowerCase());
+            esculturaNueva.setMaterial(Menu.scannerString().toLowerCase());
             return esculturaNueva;
         } else if (todo[modId].getTipo().equals(PICTORICA)) {
             Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
             picNueva.copy(todo[modId]);
             System.out.println(TIPOS_TECNICA);
-            picNueva.setTecnica(scannerString().toLowerCase());
+            picNueva.setTecnica(Menu.scannerString().toLowerCase());
             return picNueva;
         }
         return null;
-    }
-
-    public static String scannerString() {
-        Scanner scString = new Scanner(System.in);
-        return scString.nextLine();
-    }
-
-    public int scannerInt() {
-        Scanner scString = new Scanner(System.in);
-        return scString.nextInt();
-    }
-
-    public double scannerDouble() {
-        Scanner scString = new Scanner(System.in);
-        return scString.nextDouble();
     }
 }
