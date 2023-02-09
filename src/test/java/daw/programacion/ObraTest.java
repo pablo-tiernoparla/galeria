@@ -7,10 +7,13 @@ import org.junit.jupiter.api.*;
 public class ObraTest {
 
     Obra obra1;
+    Pictorica obra2;
+    Escultura obra3;
 
     @BeforeEach
     void crearObjetoObra() {
         obra1 = new Obra(1, "Abc", "Raul", 2.1, 2.2, 2.3, 4, "esto es la descripcion");
+        obra2 = new Pictorica(2, "qwe", "Pablo", 4, 5, 6, 7, "descripcion", "oleo");
     }
 
     @AfterEach
@@ -136,5 +139,24 @@ public class ObraTest {
                 + ", Altura: "
                 + 2.2 + ", Peso: " + 2.3 + ", Piezas: " + 4 + ", Descripción: " + "esto es la descripcion";
         assertEquals(expected, obra1.toString());
+    }
+
+    @Test
+    void getTipoFunciona(){
+        String expected = "pictorica";
+        assertEquals(expected, obra2.getTipo());
+    }
+
+    @Test
+    void cambiarTipoFunciona(){
+        String expected = null;
+        assertEquals(expected, obra1.cambiarTipo());
+    }
+
+    @Test
+    void copyFunciona(){
+        Obra obraCopy = new Obra(0, null, null, 0, 0, 0, 0, null);
+        obraCopy.copy(obra1);
+        assertTrue(obra1.getId() == (obraCopy.getId()));
     }
 }
