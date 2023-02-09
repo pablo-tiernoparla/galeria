@@ -54,7 +54,9 @@ public class Pictorica extends Obra {
     public Obra cambiarTipo(){
         Escultura esculturaNueva = new Escultura(0, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, null);
         System.out.println(TIPOS_MATERIAL);
-        esculturaNueva.setMaterial(Menu.scannerString().toLowerCase());
+        String material = Menu.scannerString().toLowerCase();
+        check(material);
+        esculturaNueva.setMaterial(material);
         return esculturaNueva;
     }
 }
