@@ -18,37 +18,6 @@ public class Galeria {
         this.activo = activo;
     }
 
-    public Obra[] cambiarActividad(int num, Obra[] todo) throws IllegalArgumentException {
-        try {
-            checkInputs(num);
-            if (num == 1) {
-                visualizarObras(todo);
-            } else if (num == 2) {
-                Obra[] placeHolder = darDeAltaUnaObra(todo);
-                return placeHolder;
-            } else if (num == 3) {
-                System.out.println(SELECCIONAR_ID);
-                modificarObra(Menu.scannerInt(), todo);
-            } else if (num == 4) {
-                System.out.println(SELECCIONAR_ID);
-                visualizarDatosObra(Menu.scannerInt(), todo);
-            } else if (num == 5) {
-                System.out.println(SELECCIONAR_ID);
-                obtenerPrecio(Menu.scannerInt(), todo);
-            } else if (num == 6) {
-                System.out.println(SELECCIONAR_ID);
-                imprimirEtiqueta(Menu.scannerInt(), todo);
-            } else if (num == 0) {
-                setActivo(false);
-            }
-            return todo;
-        } catch (IllegalArgumentException wrongNum) {
-            System.out.println(ESPACIO);
-            System.out.println(ERROR_NUM_MAL);
-            return todo;
-        }
-    }
-
     public int findId(int num, Obra[] todo) throws IllegalArgumentException {
         int index;
         for (index = 0; index < todo.length; index++) {
@@ -173,6 +142,7 @@ public class Galeria {
         }
     }
 
+    //mover a subclases
     public Pictorica darDeAltaPictorica(Obra[] todo) throws IllegalArgumentException {
         Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
         darDeAlta(picNueva, todo);
@@ -264,19 +234,6 @@ public class Galeria {
         System.out.println(NOMBRE + todo[etiquetaId].getNombre());
         System.out.println(AUTOR + todo[etiquetaId].getAutor());
         System.out.println(DESC + todo[etiquetaId].getDesc());
-    }
-
-    public Obra[] elegirOpcion(Obra[] todo) {
-        Obra[] placeHolder = todo;
-        try {
-            Menu menuOpcion = new Menu();
-            menuOpcion.enseñarMenu();
-            placeHolder = cambiarActividad(Menu.scannerInt(), todo);
-            return placeHolder;
-        } catch (InputMismatchException wasString) {
-            System.out.println(ERROR_LETRA);
-            return placeHolder;
-        }
     }
 
     public void checkInputs(int num) throws IllegalArgumentException {
