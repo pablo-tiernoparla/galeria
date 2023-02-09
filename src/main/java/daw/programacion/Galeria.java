@@ -71,8 +71,6 @@ public class Galeria {
         }
     }
 
-    // excepcion numeros y letras
-    // excepcion id ya existe
     public void darDeAlta(Obra obraNueva, Obra[] todo) {
         darDeAltaId(obraNueva, todo);
         darDeAltaNombre(obraNueva);
@@ -153,8 +151,6 @@ public class Galeria {
         return coleccionNueva;
     }
 
-    // excepcion letras y numeros
-    // excepcion id ya existe
     public Obra[] darDeAltaUnaObra(Obra[] todo) throws IllegalArgumentException {
         try {
             Obra[] placeHolder = aumentarColeccion(todo);
@@ -197,7 +193,6 @@ public class Galeria {
         return esculturaNueva;
     }
 
-    // excepcion letras y numeros
     public void modificarObra(int num, Obra[] todo) {
         Menu menuModificar = new Menu();
         int modId = findId(num, todo);

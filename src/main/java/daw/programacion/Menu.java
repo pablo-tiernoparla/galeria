@@ -35,6 +35,7 @@ public class Menu {
         }
     }
 
+    //cerrar el scanner hace que funcione mal
     public static String scannerString() {
         Scanner scString = new Scanner(System.in);
         return scString.nextLine();
