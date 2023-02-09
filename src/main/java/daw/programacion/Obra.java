@@ -1,7 +1,5 @@
 package daw.programacion;
 
-import static daw.programacion.Mensajes.*;
-
 public class Obra {
 
     protected int id;

@@ -22,14 +22,14 @@ public class Pictorica extends Obra {
     }
 
     @Override
-    public void check(String tipo) throws IllegalArgumentException{
+    public void check(String tipo) throws IllegalArgumentException {
         if (!(tipo.equals(OLEO) || tipo.equals(CARBONCILLO) || tipo.equals(ACRILICA) || tipo.equals(ACUARELA))) {
             throw new IllegalArgumentException();
         }
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return super.toString() + ", Tipo: " + this.tipo + ", Técnica: " + this.tecnica;
     }
 
@@ -42,7 +42,7 @@ public class Pictorica extends Obra {
     }
 
     @Override
-    public Obra modificarEspecialidad(Obra[] todo, int modId){
+    public Obra modificarEspecialidad(Obra[] todo, int modId) {
         Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
         picNueva.copy(todo[modId]);
         System.out.println(TIPOS_TECNICA);
@@ -51,8 +51,9 @@ public class Pictorica extends Obra {
     }
 
     @Override
-    public Obra cambiarTipo(){
-        Escultura esculturaNueva = new Escultura(0, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, null);
+    public Obra cambiarTipo() {
+        Escultura esculturaNueva = new Escultura(0, this.nombre, this.autor, this.precio, this.altura, this.peso,
+                this.piezas, this.desc, null);
         System.out.println(TIPOS_MATERIAL);
         String material = Menu.scannerString().toLowerCase();
         check(material);

@@ -207,27 +207,6 @@ public class Galeria {
         }
     }
 
-    public Obra modificarEspecialidad(Obra[] todo, int modId) {
-        if (todo[modId].getTipo().equals(ESCULTURA)) {
-            Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
-            esculturaNueva.copy(todo[modId]);
-            System.out.println(TIPOS_MATERIAL);
-            String tipo = Menu.scannerString().toLowerCase();
-            esculturaNueva.check(tipo);
-            esculturaNueva.setMaterial(tipo);
-            return esculturaNueva;
-        } else if (todo[modId].getTipo().equals(PICTORICA)) {
-            Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
-            picNueva.copy(todo[modId]);
-            System.out.println(TIPOS_TECNICA);
-            String tipo = Menu.scannerString().toLowerCase();
-            picNueva.check(tipo);
-            picNueva.setTecnica(tipo);
-            return picNueva;
-        }
-        return null;
-    }
-
     public void modificarObra(int num, Obra[] todo) {
         Menu menuModificar = new Menu();
         int modId = findId(num, todo);
@@ -256,7 +235,7 @@ public class Galeria {
         } else if (modificar == SELECCION[6]) {
             darDeAltaPeso(todo[modId]);
         } else if (modificar == SELECCION[7]) {
-            todo[modId] = modificarEspecialidad(todo, modId);
+            todo[modId] = todo[modId].modificarEspecialidad(todo, modId);
         } else if (modificar == SELECCION[8]) {
             darDeAltaPiezas(todo[modId]);
         } else if (modificar == SELECCION[9]) {
