@@ -4,14 +4,14 @@ import static daw.programacion.Mensajes.*;
 
 public class Obra {
 
-    private int id;
-    private String nombre;
-    private String autor;
-    private double precio;
-    private double altura;
-    private double peso;
-    private int piezas;
-    private String desc;
+    protected int id;
+    protected String nombre;
+    protected String autor;
+    protected double precio;
+    protected double altura;
+    protected double peso;
+    protected int piezas;
+    protected String desc;
     protected String tipo;
 
     public Obra(int id, String nombre, String autor, double precio, double altura, double peso, int piezas,
@@ -104,19 +104,8 @@ public class Obra {
         return this.tipo;
     }
 
-    public Obra crearTipo(String tipoDeseado) throws IllegalArgumentException {
-        if (tipoDeseado.equals(PICTORICA)) {
-            Pictorica pictoricaNueva = new Pictorica(0, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, null);
-            System.out.println(TIPOS_TECNICA);
-            pictoricaNueva.setTecnica(Menu.scannerString().toLowerCase());
-            return pictoricaNueva;
-        } else if (tipoDeseado.equals(ESCULTURA)) {
-            Escultura esculturaNueva = new Escultura(0, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, null);
-            System.out.println(TIPOS_MATERIAL);
-            esculturaNueva.setMaterial(Menu.scannerString().toLowerCase());
-            return esculturaNueva;
-        }
-        throw new IllegalArgumentException();
+    public Obra cambiarTipo(){
+        return null;
     }
 
     public void copy(Obra copy) {

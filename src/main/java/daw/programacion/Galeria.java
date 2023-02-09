@@ -82,7 +82,7 @@ public class Galeria {
         darDeAltaDesc(obraNueva);
     }
 
-    public void darDeAltaId(Obra obraNueva, Obra[] todo) {
+    public static void darDeAltaId(Obra obraNueva, Obra[] todo) {
         System.out.println(ID);
         int newId = Menu.scannerInt();
         idYaExiste(newId, todo);
@@ -205,7 +205,9 @@ public class Galeria {
         }
         System.out.println(SELECCION_VALOR);
         if (modificar == SELECCION[10]) {
-            todo[modId] = todo[modId].crearTipo(Menu.scannerString().toLowerCase());
+            int save = todo[modId].getId();
+            todo[modId] = todo[modId].cambiarTipo();
+            todo[modId].setId(save);
         } else if (modificar == SELECCION[1]) {
             darDeAltaId(todo[modId], todo);
         } else if (modificar == SELECCION[2]) {
@@ -289,7 +291,7 @@ public class Galeria {
         }
     }
 
-    public void idYaExiste(int num, Obra[] todo) throws IllegalArgumentException {
+    public static void idYaExiste(int num, Obra[] todo) throws IllegalArgumentException {
         for (int i = 0; i < todo.length; i++) {
             if (todo[i] == null) {
                 continue;
@@ -397,7 +399,7 @@ public class Galeria {
         }
     }
 
-    public void positiveNum(double num) throws IllegalArgumentException{
+    public static void positiveNum(double num) throws IllegalArgumentException{
         if(!(num > 0)){
             throw new IllegalArgumentException();
         }

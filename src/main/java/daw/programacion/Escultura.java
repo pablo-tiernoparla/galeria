@@ -51,4 +51,12 @@ public class Escultura extends Obra {
         esculturaNueva.setMaterial(Menu.scannerString().toLowerCase());
         return esculturaNueva;
     }
+
+    @Override
+    public Obra cambiarTipo(){
+        Pictorica pictoricaNueva = new Pictorica(0, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, null);
+        System.out.println(TIPOS_TECNICA);
+        pictoricaNueva.setTecnica(Menu.scannerString().toLowerCase());
+        return pictoricaNueva;
+    }
 }
