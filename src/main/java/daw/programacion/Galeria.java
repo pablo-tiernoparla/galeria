@@ -380,13 +380,17 @@ public class Galeria {
             Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
             esculturaNueva.copy(todo[modId]);
             System.out.println(TIPOS_MATERIAL);
-            esculturaNueva.setMaterial(Menu.scannerString().toLowerCase());
+            String tipo = Menu.scannerString().toLowerCase();
+            esculturaNueva.check(tipo);
+            esculturaNueva.setMaterial(tipo);
             return esculturaNueva;
         } else if (todo[modId].getTipo().equals(PICTORICA)) {
             Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
             picNueva.copy(todo[modId]);
             System.out.println(TIPOS_TECNICA);
-            picNueva.setTecnica(Menu.scannerString().toLowerCase());
+            String tipo = Menu.scannerString().toLowerCase();
+            picNueva.check(tipo);
+            picNueva.setTecnica(tipo);
             return picNueva;
         }
         return null;
