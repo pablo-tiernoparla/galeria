@@ -1,5 +1,6 @@
 package daw.programacion;
 
-public class AppTest {
+public class MenuTest {
 
+    
 }
