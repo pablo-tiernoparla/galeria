@@ -93,15 +93,18 @@ public class Galeria {
     }
 
     public void darDeAltaNombre(Obra obraNueva) {
-
         System.out.println(NOMBRE);
-        obraNueva.setNombre(Menu.scannerString());
+        String nombre = Menu.scannerString();
+        checkString(nombre);
+        obraNueva.setNombre(nombre);
 
     }
 
     public void darDeAltaAutor(Obra obraNueva) {
         System.out.println(AUTOR);
-        obraNueva.setAutor(Menu.scannerString());
+        String autor = Menu.scannerString();
+        checkString(autor);
+        obraNueva.setAutor(autor);
 
     }
 
@@ -130,7 +133,9 @@ public class Galeria {
 
     public void darDeAltaDesc(Obra obraNueva) {
         System.out.println(DESC);
-        obraNueva.setDesc(Menu.scannerString());
+        String desc = Menu.scannerString();
+        checkString(desc);
+        obraNueva.setDesc(desc);
     }
 
     public Obra[] aumentarColeccion(Obra[] coleccion) {
@@ -200,9 +205,9 @@ public class Galeria {
         } else if (modificar == SELECCION[1]) {
             darDeAltaId(todo[modId], todo);
         } else if (modificar == SELECCION[2]) {
-            todo[modId].setNombre(Menu.scannerString());
+            darDeAltaNombre(todo[modId]);
         } else if (modificar == SELECCION[3]) {
-            todo[modId].setAutor(Menu.scannerString());
+            darDeAltaAutor(todo[modId]);
         } else if (modificar == SELECCION[4]) {
             todo[modId].setPrecio(Menu.scannerDouble());
         } else if (modificar == SELECCION[5]) {
@@ -214,7 +219,7 @@ public class Galeria {
         } else if (modificar == SELECCION[8]) {
             todo[modId].setPiezas(Menu.scannerInt());
         } else if (modificar == SELECCION[9]) {
-            todo[modId].setDesc(Menu.scannerString());
+            darDeAltaDesc(todo[modId]);
         }
     }
 
@@ -376,5 +381,11 @@ public class Galeria {
             return picNueva;
         }
         return null;
+    }
+
+    public void checkString(String checked) throws IllegalArgumentException{
+        if (checked.equals("")){
+            throw new IllegalArgumentException();
+        }
     }
 }
