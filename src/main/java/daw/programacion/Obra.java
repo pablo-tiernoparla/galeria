@@ -106,12 +106,12 @@ public class Obra {
 
     public Obra crearTipo(String tipoDeseado) throws IllegalArgumentException {
         if (tipoDeseado.equals(PICTORICA)) {
-            Pictorica pictoricaNueva = new Pictorica(0, nombre, autor, precio, altura, peso, piezas, desc, null);
+            Pictorica pictoricaNueva = new Pictorica(0, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, null);
             System.out.println(TIPOS_TECNICA);
             pictoricaNueva.setTecnica(Menu.scannerString().toLowerCase());
             return pictoricaNueva;
         } else if (tipoDeseado.equals(ESCULTURA)) {
-            Escultura esculturaNueva = new Escultura(0, nombre, autor, precio, altura, peso, piezas, desc, null);
+            Escultura esculturaNueva = new Escultura(0, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, null);
             System.out.println(TIPOS_MATERIAL);
             esculturaNueva.setMaterial(Menu.scannerString().toLowerCase());
             return esculturaNueva;
@@ -139,6 +139,5 @@ public class Obra {
     }
 
     public void check(String tipo){
-        return;
     }
 }

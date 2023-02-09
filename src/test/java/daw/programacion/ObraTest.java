@@ -137,4 +137,14 @@ public class ObraTest {
                 + 2.2 + ", Peso: " + 2.3 + ", Piezas: " + 4 + ", Descripción: " + "esto es la descripcion";
         assertEquals(expected, obra1.toString());
     }
+
+
+    //preguntar a raul, dentro tiene un scanner
+    @Test
+    void crearTipoPictorica(){
+        final String TIPO = "pictorica";
+        Pictorica pictoricaNueva = new Pictorica(0, "Abc", "Raul", 2.1, 2.2, 2.3, 4, "esto es la descripcion", null);
+        Obra expected = pictoricaNueva;
+        assertEquals(expected, obra1.crearTipo(TIPO));
+    }
 }
