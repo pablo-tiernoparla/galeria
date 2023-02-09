@@ -9,12 +9,12 @@ public class ObraTest {
     Obra obra1;
 
     @BeforeEach
-    void crearObjetoObra(){
+    void crearObjetoObra() {
         obra1 = new Obra(1, "Abc", "Raul", 2.1, 2.2, 2.3, 4, "esto es la descripcion");
     }
 
     @AfterEach
-    void borrarObjetoObra(){
+    void borrarObjetoObra() {
         obra1 = null;
     }
 
@@ -73,7 +73,7 @@ public class ObraTest {
         obra1.setPrecio(PRECIO_NUEVO);
         assertEquals(expected, obra1.getPrecio());
     }
-    
+
     @Test
     void getAlturaFunciona() {
         double expected = 2.2;
@@ -128,5 +128,13 @@ public class ObraTest {
         String expected = DESC_NUEVA;
         obra1.setDesc(DESC_NUEVA);
         assertEquals(expected, obra1.getDesc());
+    }
+
+    @Test
+    void toStringFunciona() {
+        String expected = "ID: " + 1 + ", Nombre: " + "Abc" + ", Autor: " + "Raul" + ", Precio: " + 2.1
+                + ", Altura: "
+                + 2.2 + ", Peso: " + 2.3 + ", Piezas: " + 4 + ", Descripción: " + "esto es la descripcion";
+        assertEquals(expected, obra1.toString());
     }
 }
