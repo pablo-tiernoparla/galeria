@@ -88,6 +88,7 @@ public class Galeria {
         System.out.println(ID);
         int newId = Menu.scannerInt();
         idYaExiste(newId, todo);
+        positiveNum(newId);
         obraNueva.setId(newId);
 
     }
@@ -110,25 +111,33 @@ public class Galeria {
 
     public void darDeAltaPrecio(Obra obraNueva) {
         System.out.println(PRECIO);
-        obraNueva.setPrecio(Menu.scannerDouble());
+        double precio = Menu.scannerDouble();
+        positiveNum(precio);
+        obraNueva.setPrecio(precio);
 
     }
 
     public void darDeAltaAltura(Obra obraNueva) {
         System.out.println(ALTURA);
-        obraNueva.setAltura(Menu.scannerDouble());
+        double altura = Menu.scannerDouble();
+        positiveNum(altura);
+        obraNueva.setAltura(altura);
 
     }
 
     public void darDeAltaPeso(Obra obraNueva) {
         System.out.println(PESO);
-        obraNueva.setPeso(Menu.scannerDouble());
+        double peso = Menu.scannerDouble();
+        positiveNum(peso);
+        obraNueva.setPeso(peso);
 
     }
 
     public void darDeAltaPiezas(Obra obraNueva) {
         System.out.println(PIEZAS);
-        obraNueva.setPiezas(Menu.scannerInt());
+        int piezas = Menu.scannerInt();
+        positiveNum(piezas);
+        obraNueva.setPiezas(piezas);
     }
 
     public void darDeAltaDesc(Obra obraNueva) {
@@ -209,15 +218,15 @@ public class Galeria {
         } else if (modificar == SELECCION[3]) {
             darDeAltaAutor(todo[modId]);
         } else if (modificar == SELECCION[4]) {
-            todo[modId].setPrecio(Menu.scannerDouble());
+            darDeAltaPrecio(todo[modId]);
         } else if (modificar == SELECCION[5]) {
-            todo[modId].setAltura(Menu.scannerDouble());
+            darDeAltaAltura(todo[modId]);
         } else if (modificar == SELECCION[6]) {
-            todo[modId].setPeso(Menu.scannerDouble());
+            darDeAltaPeso(todo[modId]);
         } else if (modificar == SELECCION[7]) {
             todo[modId] = modificarEspecialidad(todo, modId);
         } else if (modificar == SELECCION[8]) {
-            todo[modId].setPiezas(Menu.scannerInt());
+            darDeAltaPiezas(todo[modId]);
         } else if (modificar == SELECCION[9]) {
             darDeAltaDesc(todo[modId]);
         }
@@ -385,6 +394,12 @@ public class Galeria {
 
     public void checkString(String checked) throws IllegalArgumentException{
         if (checked.equals("")){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void positiveNum(double num) throws IllegalArgumentException{
+        if(!(num > 0)){
             throw new IllegalArgumentException();
         }
     }
