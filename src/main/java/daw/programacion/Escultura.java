@@ -23,7 +23,7 @@ public class Escultura extends Obra {
     
     @Override
     public void check(String tipo) throws IllegalArgumentException{
-        if (!(tipo == BRONCE || tipo == ACERO || tipo == COBRE || tipo == HIERRO)) {
+        if (!(tipo.equals(BRONCE) || tipo.equals(ACERO) || tipo.equals(COBRE) || tipo.equals(HIERRO))) {
             throw new IllegalArgumentException();
         }
     }

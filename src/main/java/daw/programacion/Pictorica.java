@@ -23,7 +23,7 @@ public class Pictorica extends Obra {
 
     @Override
     public void check(String tipo) throws IllegalArgumentException{
-        if (!(tipo == OLEO || tipo == CARBONCILLO || tipo == ACRILICA || tipo == ACUARELA)) {
+        if (!(tipo.equals(OLEO) || tipo.equals(CARBONCILLO) || tipo.equals(ACRILICA) || tipo.equals(ACUARELA))) {
             throw new IllegalArgumentException();
         }
     }
