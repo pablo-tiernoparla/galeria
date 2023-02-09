@@ -1,6 +1,5 @@
 package daw.programacion;
 
-import java.util.InputMismatchException;
 import static daw.programacion.Mensajes.*;
 
 public class Galeria {
@@ -18,6 +17,33 @@ public class Galeria {
         this.activo = activo;
     }
 
+    public static Obra[] cargarObras() {
+        Pictorica guernica = new Pictorica(1, "Guernica", "P.Picasso", 1000, 5, 2, 5, "cuadro guerra civil", "Óleo");
+        Pictorica vie = new Pictorica(2, "La Vie", "P.Picasso", 200, 1, 1, 1, "óleo", "Óleo");
+        Pictorica sueño = new Pictorica(3, "El Sueño", "P.Picasso", 300, 1.3, 1, 1, "óleo", "Óleo");
+        Pictorica retrato = new Pictorica(4, "Retrato de Dora Maar", "P.Picasso", 400, 1, 0.8, 1, "óleo", "Óleo");
+        Escultura pielRoja = new Escultura(5, "El piel roja", "U.Checa", 350, 1, 0.8, 1, "escultura", "Bronce");
+        Obra[] exposicion = { guernica, vie, sueño, retrato, pielRoja };
+        return exposicion;
+    }
+
+    //excepciones
+    public static void positiveNum(double num) throws IllegalArgumentException{
+        if(!(num > 0)){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void idYaExiste(int num, Obra[] todo) throws IllegalArgumentException {
+        for (int i = 0; i < todo.length; i++) {
+            if (todo[i] == null) {
+                continue;
+            } else if (num == todo[i].getId()) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
     public int findId(int num, Obra[] todo) throws IllegalArgumentException {
         int index;
         for (index = 0; index < todo.length; index++) {
@@ -30,6 +56,25 @@ public class Galeria {
         return index;
     }
 
+    public void checkInputs(int num) throws IllegalArgumentException {
+        if (!(num >= 0 && num < 7)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void checkTipo(String tipo) throws IllegalArgumentException {
+        if (!(tipo.equals(PICTORICA) && tipo.equals(ESCULTURA))) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void checkString(String checked) throws IllegalArgumentException{
+        if (checked.equals("")){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    //acciones
     public void visualizarObras(Obra[] todo) {
         for (int i = 0; i < todo.length; i++) {
             if (todo[i] == null) {
@@ -38,17 +83,6 @@ public class Galeria {
             System.out.println(todo[i].toString());
             System.out.println(" ");
         }
-    }
-
-    public void darDeAlta(Obra obraNueva, Obra[] todo) {
-        darDeAltaId(obraNueva, todo);
-        darDeAltaNombre(obraNueva);
-        darDeAltaAutor(obraNueva);
-        darDeAltaPrecio(obraNueva);
-        darDeAltaAltura(obraNueva);
-        darDeAltaPeso(obraNueva);
-        darDeAltaPiezas(obraNueva);
-        darDeAltaDesc(obraNueva);
     }
 
     public static void darDeAltaId(Obra obraNueva, Obra[] todo) {
@@ -114,6 +148,37 @@ public class Galeria {
         obraNueva.setDesc(desc);
     }
 
+    public void darDeAlta(Obra obraNueva, Obra[] todo) {
+        darDeAltaId(obraNueva, todo);
+        darDeAltaNombre(obraNueva);
+        darDeAltaAutor(obraNueva);
+        darDeAltaPrecio(obraNueva);
+        darDeAltaAltura(obraNueva);
+        darDeAltaPeso(obraNueva);
+        darDeAltaPiezas(obraNueva);
+        darDeAltaDesc(obraNueva);
+    }
+
+    public Pictorica darDeAltaPictorica(Obra[] todo) throws IllegalArgumentException {
+        Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
+        darDeAlta(picNueva, todo);
+        System.out.println(TIPOS_TECNICA);
+        String tipo = Menu.scannerString().toLowerCase();
+        picNueva.check(tipo);
+        picNueva.setTecnica(tipo);
+        return picNueva;
+    }
+
+    public Escultura darDeAltaEscultura(Obra[] todo) {
+        Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
+        darDeAlta(esculturaNueva, todo);
+        System.out.println(TIPOS_MATERIAL);
+        String tipo = Menu.scannerString().toLowerCase();
+        esculturaNueva.check(tipo);
+        esculturaNueva.setMaterial(tipo);
+        return esculturaNueva;
+    }
+
     public Obra[] aumentarColeccion(Obra[] coleccion) {
         Obra[] coleccionNueva = new Obra[coleccion.length + 1];
         System.arraycopy(coleccion, 0, coleccionNueva, 0, coleccion.length);
@@ -142,25 +207,25 @@ public class Galeria {
         }
     }
 
-    //mover a subclases
-    public Pictorica darDeAltaPictorica(Obra[] todo) throws IllegalArgumentException {
-        Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
-        darDeAlta(picNueva, todo);
-        System.out.println(TIPOS_TECNICA);
-        String tipo = Menu.scannerString().toLowerCase();
-        picNueva.check(tipo);
-        picNueva.setTecnica(tipo);
-        return picNueva;
-    }
-
-    public Escultura darDeAltaEscultura(Obra[] todo) {
-        Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
-        darDeAlta(esculturaNueva, todo);
-        System.out.println(TIPOS_MATERIAL);
-        String tipo = Menu.scannerString().toLowerCase();
-        esculturaNueva.check(tipo);
-        esculturaNueva.setMaterial(tipo);
-        return esculturaNueva;
+    public Obra modificarEspecialidad(Obra[] todo, int modId) {
+        if (todo[modId].getTipo().equals(ESCULTURA)) {
+            Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
+            esculturaNueva.copy(todo[modId]);
+            System.out.println(TIPOS_MATERIAL);
+            String tipo = Menu.scannerString().toLowerCase();
+            esculturaNueva.check(tipo);
+            esculturaNueva.setMaterial(tipo);
+            return esculturaNueva;
+        } else if (todo[modId].getTipo().equals(PICTORICA)) {
+            Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
+            picNueva.copy(todo[modId]);
+            System.out.println(TIPOS_TECNICA);
+            String tipo = Menu.scannerString().toLowerCase();
+            picNueva.check(tipo);
+            picNueva.setTecnica(tipo);
+            return picNueva;
+        }
+        return null;
     }
 
     public void modificarObra(int num, Obra[] todo) {
@@ -216,56 +281,6 @@ public class Galeria {
 
     public double toKilo(double tonelada) {
         return tonelada * 1000;
-    }
-
-    public void obtenerPrecio(int num, Obra[] todo) {
-        int precioId = findId(num, todo);
-
-        System.out.println(NOMBRE + todo[precioId].getNombre());
-        System.out.println(ALTURA + todo[precioId].getAltura());
-        System.out.println(PESO + todo[precioId].getPeso());
-        System.out.println(PIEZAS + todo[precioId].getPiezas());
-        System.out.println(PRECIO + todo[precioId].getPrecio());
-        precioFinal(todo, precioId);
-    }
-
-    public void imprimirEtiqueta(int num, Obra[] todo) {
-        int etiquetaId = findId(num, todo);
-        System.out.println(NOMBRE + todo[etiquetaId].getNombre());
-        System.out.println(AUTOR + todo[etiquetaId].getAutor());
-        System.out.println(DESC + todo[etiquetaId].getDesc());
-    }
-
-    public void checkInputs(int num) throws IllegalArgumentException {
-        if (!(num >= 0 && num < 7)) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public void checkTipo(String tipo) throws IllegalArgumentException {
-        if (!(tipo.equals(PICTORICA) && tipo.equals(ESCULTURA))) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public static void idYaExiste(int num, Obra[] todo) throws IllegalArgumentException {
-        for (int i = 0; i < todo.length; i++) {
-            if (todo[i] == null) {
-                continue;
-            } else if (num == todo[i].getId()) {
-                throw new IllegalArgumentException();
-            }
-        }
-    }
-
-    public static Obra[] cargarObras() {
-        Pictorica guernica = new Pictorica(1, "Guernica", "P.Picasso", 1000, 5, 2, 5, "cuadro guerra civil", "Óleo");
-        Pictorica vie = new Pictorica(2, "La Vie", "P.Picasso", 200, 1, 1, 1, "óleo", "Óleo");
-        Pictorica sueño = new Pictorica(3, "El Sueño", "P.Picasso", 300, 1.3, 1, 1, "óleo", "Óleo");
-        Pictorica retrato = new Pictorica(4, "Retrato de Dora Maar", "P.Picasso", 400, 1, 0.8, 1, "óleo", "Óleo");
-        Escultura pielRoja = new Escultura(5, "El piel roja", "U.Checa", 350, 1, 0.8, 1, "escultura", "Bronce");
-        Obra[] exposicion = { guernica, vie, sueño, retrato, pielRoja };
-        return exposicion;
     }
 
     public double precioPorPeso(Obra[] todo, int precioId) {
@@ -329,36 +344,21 @@ public class Galeria {
         return suma;
     }
 
-    public Obra modificarEspecialidad(Obra[] todo, int modId) {
-        if (todo[modId].getTipo().equals(ESCULTURA)) {
-            Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
-            esculturaNueva.copy(todo[modId]);
-            System.out.println(TIPOS_MATERIAL);
-            String tipo = Menu.scannerString().toLowerCase();
-            esculturaNueva.check(tipo);
-            esculturaNueva.setMaterial(tipo);
-            return esculturaNueva;
-        } else if (todo[modId].getTipo().equals(PICTORICA)) {
-            Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
-            picNueva.copy(todo[modId]);
-            System.out.println(TIPOS_TECNICA);
-            String tipo = Menu.scannerString().toLowerCase();
-            picNueva.check(tipo);
-            picNueva.setTecnica(tipo);
-            return picNueva;
-        }
-        return null;
+    public void obtenerPrecio(int num, Obra[] todo) {
+        int precioId = findId(num, todo);
+
+        System.out.println(NOMBRE + todo[precioId].getNombre());
+        System.out.println(ALTURA + todo[precioId].getAltura());
+        System.out.println(PESO + todo[precioId].getPeso());
+        System.out.println(PIEZAS + todo[precioId].getPiezas());
+        System.out.println(PRECIO + todo[precioId].getPrecio());
+        precioFinal(todo, precioId);
     }
 
-    public void checkString(String checked) throws IllegalArgumentException{
-        if (checked.equals("")){
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public static void positiveNum(double num) throws IllegalArgumentException{
-        if(!(num > 0)){
-            throw new IllegalArgumentException();
-        }
+    public void imprimirEtiqueta(int num, Obra[] todo) {
+        int etiquetaId = findId(num, todo);
+        System.out.println(NOMBRE + todo[etiquetaId].getNombre());
+        System.out.println(AUTOR + todo[etiquetaId].getAutor());
+        System.out.println(DESC + todo[etiquetaId].getDesc());
     }
 }
