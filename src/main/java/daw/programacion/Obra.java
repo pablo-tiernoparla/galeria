@@ -117,6 +117,7 @@ public class Obra {
         this.desc = copy.desc;
     }
 
+    //solo estan para hacer override
     public double descuento(Obra[] todo, int id) {
         return 0;
     }
