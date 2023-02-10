@@ -1,8 +1,7 @@
 package daw.programacion.obras;
 
-import static daw.programacion.obras.MensajesObras.*;
+import static daw.programacion.galeria.Mensajes.*;
 
-import daw.programacion.galeria.Galeria;
 import daw.programacion.galeria.Menu;
 
 public class Pictorica extends Obra {
@@ -39,7 +38,7 @@ public class Pictorica extends Obra {
     @Override
     public double descuento(Obra[] todo, int precioId) {
         double suma = 0;
-        System.out.println(DESCUENTO_10 + Galeria.toDolar((todo[precioId].getPrecio() * DESCUENTO_PIC)));
+        System.out.println(DESCUENTO_10 + toDolar((todo[precioId].getPrecio() * DESCUENTO_PIC)));
         suma += (todo[precioId].getPrecio() * DESCUENTO_PIC);
         return suma;
     }

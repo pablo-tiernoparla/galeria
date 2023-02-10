@@ -1,8 +1,7 @@
 package daw.programacion.obras;
 
-import static daw.programacion.obras.MensajesObras.*;
+import static daw.programacion.galeria.Mensajes.*;
 
-import daw.programacion.galeria.Galeria;
 import daw.programacion.galeria.Menu;
 
 public class Escultura extends Obra {
@@ -39,9 +38,9 @@ public class Escultura extends Obra {
     @Override
     public double descuento(Obra[] todo, int precioId) {
         double suma = 0;
-        System.out.println(DESCUENTO_20 + Galeria.toDolar((todo[precioId].getPrecio() * DESCUENTO_ESC)));
+        System.out.println(DESCUENTO_20 + toDolar((todo[precioId].getPrecio() * DESCUENTO_ESC)));
         suma += (todo[precioId].getPrecio() * DESCUENTO_ESC);
-        System.out.println(GASTOS + Galeria.toDolar(MANIPULACION));
+        System.out.println(GASTOS + toDolar(MANIPULACION));
         suma += MANIPULACION;
         return suma;
     }

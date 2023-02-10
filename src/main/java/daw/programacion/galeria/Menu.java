@@ -11,7 +11,7 @@ public class Menu {
     public static void main(String[] args) {
         Galeria galeria = new Galeria();
 
-        Obra[] exposicion = Galeria.cargarObras();
+        Obra[] exposicion = Obra.cargarObras();
         Obra[] placeHolder = elegirOpcion(exposicion, galeria);
 
         while (galeria.isActivo()) {
@@ -32,35 +32,42 @@ public class Menu {
         System.out.println(ESCOGER);
     }
 
-    public void menuModificarObra() {
+    public static void menuModificarObra() {
 
         for (int i = 0; i < SELECCION.length; i++) {
             System.out.println(SELECCION[i] + ESPACIO + ATRIBUTOS[i]);
         }
     }
 
-    public static Obra[] cambiarActividad(int num, Obra[] todo, Galeria gal) throws IllegalArgumentException {
+    public static Obra[] cambiarActividad(int num, Obra[] todo) throws IllegalArgumentException {
         try {
-            gal.checkInputs(num);
+            Obra.checkInputs(num);
             if (num == 1) {
-                gal.visualizarObras(todo);
+                Obra.visualizarObras(todo);
             } else if (num == 2) {
-                Obra[] placeHolder = gal.darDeAltaUnaObra(todo);
+                Obra[] placeHolder = Obra.darDeAltaUnaObra(todo);
                 return placeHolder;
             } else if (num == 3) {
                 System.out.println(SELECCIONAR_ID);
-                gal.modificarObra(Menu.scannerInt(), todo);
+                int idSeleccion = scannerInt();
+                Obra.findId(idSeleccion, todo);
+                System.out.println(SELECCIONAR_MOD);
+                menuModificarObra();
+                int valor = scannerInt();
+                System.out.println(SELECCION_VALOR);
+                String cambio = scannerString();
+                .modificarObra(idSeleccion, todo, valor);
             } else if (num == 4) {
                 System.out.println(SELECCIONAR_ID);
-                gal.visualizarDatosObra(Menu.scannerInt(), todo);
+                .visualizarDatosObra(Menu.scannerInt(), todo);
             } else if (num == 5) {
                 System.out.println(SELECCIONAR_ID);
-                gal.obtenerPrecio(Menu.scannerInt(), todo);
+                .obtenerPrecio(Menu.scannerInt(), todo);
             } else if (num == 6) {
                 System.out.println(SELECCIONAR_ID);
-                gal.imprimirEtiqueta(Menu.scannerInt(), todo);
+                .imprimirEtiqueta(Menu.scannerInt(), todo);
             } else if (num == 0) {
-                gal.setActivo(false);
+                .setActivo(false);
             }
             return todo;
         } catch (IllegalArgumentException wrongNum) {
@@ -70,12 +77,12 @@ public class Menu {
         }
     }
 
-    public static Obra[] elegirOpcion(Obra[] todo, Galeria gal) {
+    public static Obra[] elegirOpcion(Obra[] todo) {
         Obra[] placeHolder = todo;
         try {
             Menu menuOpcion = new Menu();
             menuOpcion.enseñarMenu();
-            placeHolder = cambiarActividad(Menu.scannerInt(), todo, gal);
+            placeHolder = cambiarActividad(Menu.scannerInt(), todo);
             return placeHolder;
         } catch (InputMismatchException wasString) {
             System.out.println(ERROR_LETRA);
