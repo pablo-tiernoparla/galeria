@@ -58,7 +58,7 @@ public class Escultura extends Obra {
                 this.piezas, this.desc, null);
         System.out.println(TIPOS_TECNICA);
         String tecnica = Menu.scannerString().toLowerCase();
-        check(tecnica);
+        pictoricaNueva.check(tecnica);
         pictoricaNueva.setTecnica(tecnica);
         return pictoricaNueva;
     }

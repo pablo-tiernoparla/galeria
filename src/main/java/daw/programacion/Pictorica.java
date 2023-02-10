@@ -56,7 +56,7 @@ public class Pictorica extends Obra {
                 this.piezas, this.desc, null);
         System.out.println(TIPOS_MATERIAL);
         String material = Menu.scannerString().toLowerCase();
-        check(material);
+        esculturaNueva.check(material);
         esculturaNueva.setMaterial(material);
         return esculturaNueva;
     }
