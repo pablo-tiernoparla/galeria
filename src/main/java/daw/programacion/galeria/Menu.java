@@ -1,8 +1,11 @@
-package daw.programacion;
+package daw.programacion.galeria;
+
+import static daw.programacion.galeria.Mensajes.*;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import static daw.programacion.Mensajes.*;
+
+import daw.programacion.obras.Obra;
 
 public class Menu {
     public static void main(String[] args) {

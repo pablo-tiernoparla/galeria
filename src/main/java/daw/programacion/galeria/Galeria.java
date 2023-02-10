@@ -1,6 +1,10 @@
-package daw.programacion;
+package daw.programacion.galeria;
 
-import static daw.programacion.Mensajes.*;
+import static daw.programacion.galeria.Mensajes.*;
+
+import daw.programacion.obras.Escultura;
+import daw.programacion.obras.Obra;
+import daw.programacion.obras.Pictorica;
 
 public class Galeria {
 

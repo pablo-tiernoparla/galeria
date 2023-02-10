@@ -1,4 +1,4 @@
-package daw.programacion;
+package daw.programacion.galeria;
 
 public final class Mensajes {
     // menu

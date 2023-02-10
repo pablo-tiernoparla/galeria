@@ -1,4 +1,4 @@
-package daw.programacion;
+package daw.programacion.obras;
 
 public class Obra {
 

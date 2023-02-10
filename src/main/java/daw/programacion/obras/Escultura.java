@@ -1,6 +1,9 @@
-package daw.programacion;
+package daw.programacion.obras;
 
-import static daw.programacion.Mensajes.*;
+import static daw.programacion.obras.MensajesObras.*;
+
+import daw.programacion.galeria.Galeria;
+import daw.programacion.galeria.Menu;
 
 public class Escultura extends Obra {
 
