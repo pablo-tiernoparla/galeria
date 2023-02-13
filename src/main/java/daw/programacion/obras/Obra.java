@@ -34,7 +34,13 @@ public class Obra {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public void setIdCheck(int id, Obra[] todo) {
+        idYaExiste(id, todo);
+        positiveNum(id);
         this.id = id;
     }
 
@@ -43,6 +49,7 @@ public class Obra {
     }
 
     public void setNombre(String nombre) {
+        checkString(nombre);
         this.nombre = nombre;
     }
 
@@ -51,6 +58,7 @@ public class Obra {
     }
 
     public void setAutor(String autor) {
+        checkString(autor);
         this.autor = autor;
     }
 
@@ -59,6 +67,7 @@ public class Obra {
     }
 
     public void setPrecio(double precio) {
+        positiveNum(precio);
         this.precio = precio;
     }
 
@@ -67,6 +76,7 @@ public class Obra {
     }
 
     public void setAltura(double altura) {
+        positiveNum(altura);
         this.altura = altura;
     }
 
@@ -75,6 +85,7 @@ public class Obra {
     }
 
     public void setPeso(double peso) {
+        positiveNum(peso);
         this.peso = peso;
     }
 
@@ -83,6 +94,7 @@ public class Obra {
     }
 
     public void setPiezas(int piezas) {
+        positiveNum(piezas);
         this.piezas = piezas;
     }
 
@@ -91,6 +103,7 @@ public class Obra {
     }
 
     public void setDesc(String desc) {
+        checkString(desc);
         this.desc = desc;
     }
 
@@ -200,98 +213,8 @@ public class Obra {
         }
     }
 
-    public static void darDeAltaId(Obra obraNueva, Obra[] todo) {
-        System.out.println(ID);
-        int newId = Menu.scannerInt();
-        idYaExiste(newId, todo);
-        positiveNum(newId);
-        obraNueva.setId(newId);
-
-    }
-
-    public static void darDeAltaNombre(Obra obraNueva) {
-        System.out.println(NOMBRE);
-        String nombre = Menu.scannerString();
-        checkString(nombre);
-        obraNueva.setNombre(nombre);
-
-    }
-
-    public static void darDeAltaAutor(Obra obraNueva) {
-        System.out.println(AUTOR);
-        String autor = Menu.scannerString();
-        checkString(autor);
-        obraNueva.setAutor(autor);
-
-    }
-
-    public static void darDeAltaPrecio(Obra obraNueva) {
-        System.out.println(PRECIO);
-        double precio = Menu.scannerDouble();
-        positiveNum(precio);
-        obraNueva.setPrecio(precio);
-
-    }
-
-    public static void darDeAltaAltura(Obra obraNueva) {
-        System.out.println(ALTURA);
-        double altura = Menu.scannerDouble();
-        positiveNum(altura);
-        obraNueva.setAltura(altura);
-
-    }
-
-    public static void darDeAltaPeso(Obra obraNueva) {
-        System.out.println(PESO);
-        double peso = Menu.scannerDouble();
-        positiveNum(peso);
-        obraNueva.setPeso(peso);
-
-    }
-
-    public static void darDeAltaPiezas(Obra obraNueva) {
-        System.out.println(PIEZAS);
-        int piezas = Menu.scannerInt();
-        positiveNum(piezas);
-        obraNueva.setPiezas(piezas);
-    }
-
-    public static void darDeAltaDesc(Obra obraNueva) {
-        System.out.println(DESC);
-        String desc = Menu.scannerString();
-        checkString(desc);
-        obraNueva.setDesc(desc);
-    }
-
-    public static void darDeAlta(Obra obraNueva, Obra[] todo) {
-        darDeAltaId(obraNueva, todo);
-        darDeAltaNombre(obraNueva);
-        darDeAltaAutor(obraNueva);
-        darDeAltaPrecio(obraNueva);
-        darDeAltaAltura(obraNueva);
-        darDeAltaPeso(obraNueva);
-        darDeAltaPiezas(obraNueva);
-        darDeAltaDesc(obraNueva);
-    }
-
-    public static Pictorica darDeAltaPictorica(Obra[] todo) throws IllegalArgumentException {
-        Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
-        darDeAlta(picNueva, todo);
-        System.out.println(TIPOS_TECNICA);
-        String tipo = Menu.scannerString().toLowerCase();
-        picNueva.check(tipo);
-        picNueva.setTecnica(tipo);
-        return picNueva;
-    }
-
-    public static Escultura darDeAltaEscultura(Obra[] todo) {
-        Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
-        darDeAlta(esculturaNueva, todo);
-        System.out.println(TIPOS_MATERIAL);
-        String tipo = Menu.scannerString().toLowerCase();
-        esculturaNueva.check(tipo);
-        esculturaNueva.setMaterial(tipo);
-        return esculturaNueva;
+    public Obra darDeAltaTipo(){
+        return null;
     }
 
     public static Obra[] aumentarColeccion(Obra[] coleccion) {
@@ -300,14 +223,18 @@ public class Obra {
         return coleccionNueva;
     }
 
-    public static Obra[] darDeAltaUnaObra(Obra[] todo, String tipo) throws IllegalArgumentException {
+    public Obra[] darDeAltaUnaObra(Obra[] todo, String tipo) throws IllegalArgumentException {
         try {
             Obra[] placeHolder = aumentarColeccion(todo);
             Obra obraNueva = null;
             if (tipo.equals(PICTORICA)) {
-                obraNueva = darDeAltaPictorica(todo);
+                Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
+                picNueva.copy(this);
+                obraNueva = picNueva.darDeAltaTipo();
             } else if (tipo.equals(ESCULTURA)) {
-                obraNueva = darDeAltaEscultura(todo);
+                Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
+                esculturaNueva.copy(this);
+                obraNueva = esculturaNueva.darDeAltaTipo();
             } else {
                 throw new IllegalArgumentException();
             }
@@ -329,23 +256,31 @@ public class Obra {
             this.cambiarTipo();
             this.setId(save);
         } else if (valor == SELECCION[1]) {
-            darDeAltaId(this, todo);
+            int id = Menu.scannerInt();
+            this.setIdCheck(id, todo);
         } else if (valor == SELECCION[2]) {
-            darDeAltaNombre(this);
+            String nombre = Menu.scannerString();
+            this.setNombre(nombre);
         } else if (valor == SELECCION[3]) {
-            darDeAltaAutor(this);
+            String autor = Menu.scannerString();
+            this.setAutor(autor);
         } else if (valor == SELECCION[4]) {
-            darDeAltaPrecio(this);
+            double precio = Menu.scannerDouble();
+            this.setPrecio(precio);
         } else if (valor == SELECCION[5]) {
-            darDeAltaAltura(this);
+            double altura = Menu.scannerDouble();
+            this.setAltura(altura);
         } else if (valor == SELECCION[6]) {
-            darDeAltaPeso(this);
+            double peso = Menu.scannerDouble();
+            this.setPeso(peso);
         } else if (valor == SELECCION[7]) {
             this.modificarEspecialidad(todo);
         } else if (valor == SELECCION[8]) {
-            darDeAltaPiezas(this);
+            int piezas = Menu.scannerInt();
+            this.setPiezas(piezas);
         } else if (valor == SELECCION[9]) {
-            darDeAltaDesc(this);
+            String desc = Menu.scannerString();
+            this.setDesc(desc);
         }
     }
 

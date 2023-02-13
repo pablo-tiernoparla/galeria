@@ -9,21 +9,11 @@ import daw.programacion.obras.Obra;
 
 public class Menu {
 
-    private static boolean activo = true;
-
-    public static boolean isActivo() {
-        return activo;
-    }
-
-    public static void setActivo(boolean activo) {
-        activo = activo;
-    }
-
     public static void main(String[] args) {
         Obra[] exposicion = Obra.cargarObras();
         Obra[] placeHolder = elegirOpcion(exposicion);
 
-        while (isActivo()) {
+        while (placeHolder.length > 0) {
             exposicion = placeHolder;
             System.out.println(ESPACIO);
             System.out.println(INTRO);
@@ -54,19 +44,20 @@ public class Menu {
             if (num == 1) {
                 Obra.visualizarObras(todo);
             } else if (num == 2) {
+                Obra obraNueva = new Obra();
                 System.out.println(TIPO);
                 String tipo = Menu.scannerString().toLowerCase();
-                Obra[] placeHolder = Obra.darDeAltaUnaObra(todo, tipo);
+                obraNueva = preguntarObra();
+                Obra[] placeHolder = obraNueva.darDeAltaUnaObra(todo, tipo);
                 return placeHolder;
             } else if (num == 3) {
                 System.out.println(SELECCIONAR_ID);
                 int idSeleccion = scannerInt();
-                Obra.findId(idSeleccion, todo);
                 System.out.println(SELECCIONAR_MOD);
                 menuModificarObra();
-                int valor = scannerInt();
+                int modificacion = scannerInt();
                 System.out.println(SELECCION_VALOR);
-                todo[Obra.findId(idSeleccion, todo)].modificarObra(todo, valor);
+                todo[Obra.findId(idSeleccion, todo)].modificarObra(todo, modificacion);
             } else if (num == 4) {
                 System.out.println(SELECCIONAR_ID);
                 int idSeleccion = scannerInt();
@@ -80,7 +71,8 @@ public class Menu {
                 int idSeleccion = scannerInt();
                 todo[Obra.findId(idSeleccion, todo)].imprimirEtiqueta(todo);
             } else if (num == 0) {
-                setActivo(false);
+                Obra[] end = new Obra[0];
+                return end;
             }
             return todo;
         } catch (IllegalArgumentException wrongNum) {
@@ -117,5 +109,26 @@ public class Menu {
     public static double scannerDouble() {
         Scanner scString = new Scanner(System.in);
         return scString.nextDouble();
+    }
+
+    public static Obra preguntarObra(){
+        System.out.println(ID);
+        int id = scannerInt();
+        System.out.println(NOMBRE);
+        String nombre = scannerString();
+        System.out.println(AUTOR);
+        String autor = scannerString();
+        System.out.println(PESO);
+        double peso = scannerDouble();
+        System.out.println(ALTURA);
+        double altura = scannerDouble();
+        System.out.println(PRECIO);
+        double precio = scannerDouble();
+        System.out.println(PIEZAS);
+        int piezas = scannerInt();
+        System.out.println(DESC);
+        String desc = scannerString();
+        Obra obraNueva = new Obra(id, nombre, autor, precio, altura, peso, piezas, desc);
+        return obraNueva;
     }
 }

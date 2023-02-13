@@ -62,4 +62,13 @@ public class Pictorica extends Obra {
         esculturaNueva.setMaterial(material);
         return esculturaNueva;
     }
+
+    @Override
+    public Pictorica darDeAltaTipo(){
+        System.out.println(TIPOS_TECNICA);
+        String tipo = Menu.scannerString().toLowerCase();
+        this.check(tipo);
+        this.setTecnica(tipo);
+        return this;
+    }
 }
