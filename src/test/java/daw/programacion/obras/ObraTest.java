@@ -3,6 +3,8 @@ package daw.programacion.obras;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class ObraTest {
 
@@ -19,6 +21,7 @@ public class ObraTest {
     @AfterEach
     void borrarObjetoObra() {
         obra1 = null;
+        obra2 = null;
     }
 
     @Test
@@ -33,6 +36,60 @@ public class ObraTest {
         int expected = DOS;
         obra1.setId(DOS);
         assertEquals(expected, obra1.getId());
+    }
+
+    @Test
+    void setIdCheckFunciona(){
+        final int DOS = 2;
+        int expected = DOS;
+        obra1.setId(DOS);
+        assertEquals(expected, obra1.getId());
+    }
+
+    @Test
+    void idYaExisteExcepcion(){
+        Obra[] obras = {obra1, obra2};
+        int id = 1;
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    Obra.idYaExiste(id, obras);
+                });
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0,-1})
+    void positiveNumExcepcion(int id){
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    Obra.positiveNum(id);
+                });
+    }
+
+    @Test
+    void checkStringExcepcion(){
+        String vacio = "";
+        assertThrows(IllegalArgumentException.class,
+        () -> {
+            Obra.checkString(vacio);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0,7})
+    void checkInputsExcepcion(int num){
+        assertThrows(IllegalArgumentException.class,
+        () -> {
+            Obra.checkInputs(num);
+        });
+    }
+
+    @Test
+    void checkTipoExcepcion(){
+        String error = "abc";
+        assertThrows(IllegalArgumentException.class,
+        () -> {
+            Obra.checkTipo(error);
+        });
     }
 
     @Test
@@ -159,17 +216,17 @@ public class ObraTest {
         obraCopy.copy(obra1);
         assertTrue(obra1.getId() == (obraCopy.getId()));
     }
-/* 
+
     @Test
     void descuentoFunciona(){
         Obra[] todo = {obra1,obra2};
         int expected = 0;
-        assertEquals(expected, obra1.descuento(todo, expected));
+        assertEquals(expected, obra1.descuento(todo));
     }
 
     @Test
     void modificarEspecialidadFunciona(){
         String expected = null;
-        assertEquals(expected, obra1.modificarEspecialidad(null, 0));
-    }*/
+        assertEquals(expected, obra1.modificarEspecialidad(null));
+    }
 }
