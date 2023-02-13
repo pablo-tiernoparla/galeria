@@ -121,11 +121,11 @@ public class Obra {
     }
 
     //solo estan para hacer override
-    public double descuento(Obra[] todo, int id) {
+    public double descuento(Obra[] todo) {
         return 0;
     }
 
-    public Obra modificarEspecialidad(Obra[] todo, int modId) {
+    public Obra modificarEspecialidad(Obra[] todo) {
         return null;
     }
 
@@ -300,11 +300,9 @@ public class Obra {
         return coleccionNueva;
     }
 
-    public static Obra[] darDeAltaUnaObra(Obra[] todo) throws IllegalArgumentException {
+    public static Obra[] darDeAltaUnaObra(Obra[] todo, String tipo) throws IllegalArgumentException {
         try {
             Obra[] placeHolder = aumentarColeccion(todo);
-            System.out.println(TIPO);
-            String tipo = Menu.scannerString().toLowerCase();
             Obra obraNueva = null;
             if (tipo.equals(PICTORICA)) {
                 obraNueva = darDeAltaPictorica(todo);
@@ -322,44 +320,43 @@ public class Obra {
         }
     }
 
-    public void modificarObra(int modId, Obra[] todo, int valor) {
+    public void modificarObra(Obra[] todo, int valor) {
         if (valor == SELECCION[0]) {
             return;
         }
         if (valor == SELECCION[10]) {
-            int save = todo[modId].getId();
-            todo[modId] = todo[modId].cambiarTipo();
-            todo[modId].setId(save);
+            int save = this.getId();
+            this.cambiarTipo();
+            this.setId(save);
         } else if (valor == SELECCION[1]) {
-            darDeAltaId(todo[modId], todo);
+            darDeAltaId(this, todo);
         } else if (valor == SELECCION[2]) {
-            darDeAltaNombre(todo[modId]);
+            darDeAltaNombre(this);
         } else if (valor == SELECCION[3]) {
-            darDeAltaAutor(todo[modId]);
+            darDeAltaAutor(this);
         } else if (valor == SELECCION[4]) {
-            darDeAltaPrecio(todo[modId]);
+            darDeAltaPrecio(this);
         } else if (valor == SELECCION[5]) {
-            darDeAltaAltura(todo[modId]);
+            darDeAltaAltura(this);
         } else if (valor == SELECCION[6]) {
-            darDeAltaPeso(todo[modId]);
+            darDeAltaPeso(this);
         } else if (valor == SELECCION[7]) {
-            todo[modId] = todo[modId].modificarEspecialidad(todo, modId);
+            this.modificarEspecialidad(todo);
         } else if (valor == SELECCION[8]) {
-            darDeAltaPiezas(todo[modId]);
+            darDeAltaPiezas(this);
         } else if (valor == SELECCION[9]) {
-            darDeAltaDesc(todo[modId]);
+            darDeAltaDesc(this);
         }
     }
 
-    public void visualizarDatosObra(int num, Obra[] todo) {
-        int visualId = findId(num, todo);
-        System.out.println(NOMBRE + todo[visualId].getNombre());
-        System.out.println(AUTOR + todo[visualId].getAutor());
-        System.out.println(PRECIO + todo[visualId].getPrecio());
-        System.out.println(ALTURA + todo[visualId].getAltura());
-        System.out.println(PESO + todo[visualId].getPeso());
-        System.out.println(PIEZAS + todo[visualId].getPiezas());
-        System.out.println(DESC + todo[visualId].getDesc());
+    public void visualizarDatosObra(Obra[] todo) {
+        System.out.println(NOMBRE + this.getNombre());
+        System.out.println(AUTOR + this.getAutor());
+        System.out.println(PRECIO + this.getPrecio());
+        System.out.println(ALTURA + this.getAltura());
+        System.out.println(PESO + this.getPeso());
+        System.out.println(PIEZAS + this.getPiezas());
+        System.out.println(DESC + this.getDesc());
     }
 
     public static double toDolar(double euro) {
@@ -370,9 +367,9 @@ public class Obra {
         return tonelada * 1000;
     }
 
-    public double precioPorPeso(Obra[] todo, int precioId) {
+    public double precioPorPeso(Obra[] todo) {
         double suma = 0;
-        if (toKilo(todo[precioId].getPeso()) > PESO_LIMITE) {
+        if (toKilo(this.getPeso()) > PESO_LIMITE) {
             suma += IMPORTE_MAX;
             System.out.println(IMPORTE_PESO + toDolar(IMPORTE_MAX));
         } else {
@@ -382,17 +379,17 @@ public class Obra {
         return suma;
     }
 
-    public double precioPorAltura(Obra[] todo, int precioId) {
+    public double precioPorAltura(Obra[] todo) {
         double precioAltura = 0;
         double suma = 0;
-        if (todo[precioId].getAltura() > ALTURA_LIMITE) {
-            for (int i = 0; i < todo[precioId].getPiezas(); i++) {
+        if (this.getAltura() > ALTURA_LIMITE) {
+            for (int i = 0; i < this.getPiezas(); i++) {
                 precioAltura += IMPORTE_MAX;
                 suma = precioAltura;
             }
             System.out.println(IMPORTE_ALTURA + toDolar(precioAltura));
         } else {
-            for (int i = 0; i < todo[precioId].getPiezas(); i++) {
+            for (int i = 0; i < this.getPiezas(); i++) {
                 precioAltura += IMPORTE_MIN;
                 suma += precioAltura;
             }
@@ -401,10 +398,10 @@ public class Obra {
         return suma;
     }
 
-    public double precioPorPiezas(Obra[] todo, int precioId) {
+    public double precioPorPiezas(Obra[] todo) {
         double suma = 0;
-        if (todo[precioId].getPiezas() > PIEZAS_LIMITE) {
-            for (int i = 2; i < todo[precioId].getPiezas(); i++) {
+        if (this.getPiezas() > PIEZAS_LIMITE) {
+            for (int i = 2; i < this.getPiezas(); i++) {
                 suma += IMPORTE_PIEZA;
                 System.out.println(IMPORTE_AD_PIEZA + i + " " + toDolar(PRECIO_PIEZA));
             }
@@ -412,40 +409,37 @@ public class Obra {
         return suma;
     }
 
-    public double precioFinalSinDescuento(Obra[] todo, int precioId) {
+    public double precioFinalSinDescuento(Obra[] todo) {
         double suma = 0;
-        System.out.println(COMISION + toDolar(todo[precioId].getPrecio() * COMISION_GALERIA));
-        suma += (todo[precioId].getPrecio() * COMISION_GALERIA);
-        suma += precioPorPeso(todo, precioId);
-        suma += precioPorAltura(todo, precioId);
-        suma += precioPorPiezas(todo, precioId);
+        System.out.println(COMISION + toDolar(this.getPrecio() * COMISION_GALERIA));
+        suma += (this.getPrecio() * COMISION_GALERIA);
+        suma += precioPorPeso(todo);
+        suma += precioPorAltura(todo);
+        suma += precioPorPiezas(todo);
         System.out.println(VENTA + toDolar(suma));
         return suma;
     }
 
-    public double precioFinal(Obra[] todo, int precioId) {
+    public double precioFinal(Obra[] todo) {
         double suma = 0;
-        suma += precioFinalSinDescuento(todo, precioId);
-        suma += todo[precioId].descuento(todo, precioId);
+        suma += precioFinalSinDescuento(todo);
+        suma += this.descuento(todo);
         System.out.println(PRECIO_FINAL + toDolar(suma));
         return suma;
     }
 
-    public void obtenerPrecio(int num, Obra[] todo) {
-        int precioId = findId(num, todo);
-
-        System.out.println(NOMBRE + todo[precioId].getNombre());
-        System.out.println(ALTURA + todo[precioId].getAltura());
-        System.out.println(PESO + todo[precioId].getPeso());
-        System.out.println(PIEZAS + todo[precioId].getPiezas());
-        System.out.println(PRECIO + todo[precioId].getPrecio());
-        precioFinal(todo, precioId);
+    public void obtenerPrecio(Obra[] todo) {
+        System.out.println(NOMBRE + this.getNombre());
+        System.out.println(ALTURA + this.getAltura());
+        System.out.println(PESO + this.getPeso());
+        System.out.println(PIEZAS + this.getPiezas());
+        System.out.println(PRECIO + this.getPrecio());
+        precioFinal(todo);
     }
 
-    public void imprimirEtiqueta(int num, Obra[] todo) {
-        int etiquetaId = findId(num, todo);
-        System.out.println(NOMBRE + todo[etiquetaId].getNombre());
-        System.out.println(AUTOR + todo[etiquetaId].getAutor());
-        System.out.println(DESC + todo[etiquetaId].getDesc());
+    public void imprimirEtiqueta(Obra[] todo) {
+        System.out.println(NOMBRE + this.getNombre());
+        System.out.println(AUTOR + this.getAutor());
+        System.out.println(DESC + this.getDesc());
     }
 }

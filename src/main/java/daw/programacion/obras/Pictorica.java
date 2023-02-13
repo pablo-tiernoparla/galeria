@@ -36,17 +36,17 @@ public class Pictorica extends Obra {
     }
 
     @Override
-    public double descuento(Obra[] todo, int precioId) {
+    public double descuento(Obra[] todo) {
         double suma = 0;
-        System.out.println(DESCUENTO_10 + toDolar((todo[precioId].getPrecio() * DESCUENTO_PIC)));
-        suma += (todo[precioId].getPrecio() * DESCUENTO_PIC);
+        System.out.println(DESCUENTO_10 + toDolar((this.getPrecio() * DESCUENTO_PIC)));
+        suma += (this.getPrecio() * DESCUENTO_PIC);
         return suma;
     }
 
     @Override
-    public Obra modificarEspecialidad(Obra[] todo, int modId) {
+    public Obra modificarEspecialidad(Obra[] todo) {
         Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
-        picNueva.copy(todo[modId]);
+        picNueva.copy(this);
         System.out.println(TIPOS_TECNICA);
         picNueva.setTecnica(Menu.scannerString().toLowerCase());
         return picNueva;

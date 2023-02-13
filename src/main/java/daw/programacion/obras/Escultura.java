@@ -36,19 +36,19 @@ public class Escultura extends Obra {
     }
 
     @Override
-    public double descuento(Obra[] todo, int precioId) {
+    public double descuento(Obra[] todo) {
         double suma = 0;
-        System.out.println(DESCUENTO_20 + toDolar((todo[precioId].getPrecio() * DESCUENTO_ESC)));
-        suma += (todo[precioId].getPrecio() * DESCUENTO_ESC);
+        System.out.println(DESCUENTO_20 + toDolar((this.getPrecio() * DESCUENTO_ESC)));
+        suma += (this.getPrecio() * DESCUENTO_ESC);
         System.out.println(GASTOS + toDolar(MANIPULACION));
         suma += MANIPULACION;
         return suma;
     }
 
     @Override
-    public Obra modificarEspecialidad(Obra[] todo, int modId) {
+    public Obra modificarEspecialidad(Obra[] todo) {
         Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
-        esculturaNueva.copy(todo[modId]);
+        esculturaNueva.copy(this);
         System.out.println(TIPOS_MATERIAL);
         esculturaNueva.setMaterial(Menu.scannerString().toLowerCase());
         return esculturaNueva;

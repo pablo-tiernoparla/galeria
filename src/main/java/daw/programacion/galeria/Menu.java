@@ -8,18 +8,27 @@ import java.util.Scanner;
 import daw.programacion.obras.Obra;
 
 public class Menu {
+
+    private static boolean activo = true;
+
+    public static boolean isActivo() {
+        return activo;
+    }
+
+    public static void setActivo(boolean activo) {
+        activo = activo;
+    }
+
     public static void main(String[] args) {
-        Galeria galeria = new Galeria();
-
         Obra[] exposicion = Obra.cargarObras();
-        Obra[] placeHolder = elegirOpcion(exposicion, galeria);
+        Obra[] placeHolder = elegirOpcion(exposicion);
 
-        while (galeria.isActivo()) {
+        while (isActivo()) {
             exposicion = placeHolder;
             System.out.println(ESPACIO);
             System.out.println(INTRO);
             scannerString();
-            placeHolder = elegirOpcion(exposicion, galeria);
+            placeHolder = elegirOpcion(exposicion);
             
         }
     }
@@ -45,7 +54,9 @@ public class Menu {
             if (num == 1) {
                 Obra.visualizarObras(todo);
             } else if (num == 2) {
-                Obra[] placeHolder = Obra.darDeAltaUnaObra(todo);
+                System.out.println(TIPO);
+                String tipo = Menu.scannerString().toLowerCase();
+                Obra[] placeHolder = Obra.darDeAltaUnaObra(todo, tipo);
                 return placeHolder;
             } else if (num == 3) {
                 System.out.println(SELECCIONAR_ID);
@@ -55,19 +66,21 @@ public class Menu {
                 menuModificarObra();
                 int valor = scannerInt();
                 System.out.println(SELECCION_VALOR);
-                String cambio = scannerString();
-                .modificarObra(idSeleccion, todo, valor);
+                todo[Obra.findId(idSeleccion, todo)].modificarObra(todo, valor);
             } else if (num == 4) {
                 System.out.println(SELECCIONAR_ID);
-                .visualizarDatosObra(Menu.scannerInt(), todo);
+                int idSeleccion = scannerInt();
+                todo[Obra.findId(idSeleccion, todo)].visualizarDatosObra(todo);
             } else if (num == 5) {
                 System.out.println(SELECCIONAR_ID);
-                .obtenerPrecio(Menu.scannerInt(), todo);
+                int idSeleccion = scannerInt();
+                todo[Obra.findId(idSeleccion, todo)].obtenerPrecio(todo);
             } else if (num == 6) {
                 System.out.println(SELECCIONAR_ID);
-                .imprimirEtiqueta(Menu.scannerInt(), todo);
+                int idSeleccion = scannerInt();
+                todo[Obra.findId(idSeleccion, todo)].imprimirEtiqueta(todo);
             } else if (num == 0) {
-                .setActivo(false);
+                setActivo(false);
             }
             return todo;
         } catch (IllegalArgumentException wrongNum) {

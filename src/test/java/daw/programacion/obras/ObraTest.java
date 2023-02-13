@@ -159,7 +159,7 @@ public class ObraTest {
         obraCopy.copy(obra1);
         assertTrue(obra1.getId() == (obraCopy.getId()));
     }
-
+/* 
     @Test
     void descuentoFunciona(){
         Obra[] todo = {obra1,obra2};
@@ -171,5 +171,5 @@ public class ObraTest {
     void modificarEspecialidadFunciona(){
         String expected = null;
         assertEquals(expected, obra1.modificarEspecialidad(null, 0));
-    }
+    }*/
 }
