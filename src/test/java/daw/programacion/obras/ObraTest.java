@@ -48,47 +48,47 @@ public class ObraTest {
 
     @Test
     void idYaExisteExcepcion(){
-        Obra[] obras = {obra1, obra2};
-        int id = 1;
+        final Obra[] OBRAS = {obra1, obra2};
+        final int ID = 1;
         assertThrows(IllegalArgumentException.class,
                 () -> {
-                    Obra.idYaExiste(id, obras);
+                    Obra.idYaExiste(ID, OBRAS);
                 });
     }
 
     @ParameterizedTest
     @ValueSource(ints = {0,-1})
-    void positiveNumExcepcion(int id){
+    void positiveNumExcepcion(final int ID){
         assertThrows(IllegalArgumentException.class,
                 () -> {
-                    Obra.positiveNum(id);
+                    Obra.positiveNum(ID);
                 });
     }
 
     @Test
     void checkStringExcepcion(){
-        String vacio = "";
+        final String VACIO = "";
         assertThrows(IllegalArgumentException.class,
         () -> {
-            Obra.checkString(vacio);
+            Obra.checkString(VACIO);
         });
     }
 
     @ParameterizedTest
     @ValueSource(ints = {0,7})
-    void checkInputsExcepcion(int num){
+    void checkInputsExcepcion(final int NUM){
         assertThrows(IllegalArgumentException.class,
         () -> {
-            Obra.checkInputs(num);
+            Obra.checkInputs(NUM);
         });
     }
 
     @Test
     void checkTipoExcepcion(){
-        String error = "abc";
+        final String ERROR = "abc";
         assertThrows(IllegalArgumentException.class,
         () -> {
-            Obra.checkTipo(error);
+            Obra.checkTipo(ERROR);
         });
     }
 
