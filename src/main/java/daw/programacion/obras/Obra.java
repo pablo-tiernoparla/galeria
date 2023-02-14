@@ -3,7 +3,7 @@ package daw.programacion.obras;
 import static daw.programacion.galeria.Mensajes.*;
 import daw.programacion.galeria.Menu;
 
-public class Obra {
+public abstract class Obra {
 
     protected int id;
     protected String nombre;
@@ -134,16 +134,13 @@ public class Obra {
     }
 
     //solo estan para hacer override
-    public double descuento(Obra[] todo) {
-        return 0;
-    }
+    public abstract double descuento(Obra[] todo);
+    
+    public abstract Obra modificarEspecialidad(Obra[] todo);
 
-    public Obra modificarEspecialidad(Obra[] todo) {
-        return null;
-    }
+    public abstract void check(String tipo);
 
-    public void check(String tipo){
-    }
+    public abstract Obra darDeAltaTipo();
 
     public static Obra[] cargarObras() {
         Pictorica guernica = new Pictorica(1, "Guernica", "P.Picasso", 1000, 5, 2, 5, "cuadro guerra civil", "Óleo");
@@ -211,10 +208,6 @@ public class Obra {
             System.out.println(todo[i].toString());
             System.out.println(" ");
         }
-    }
-
-    public Obra darDeAltaTipo(){
-        return null;
     }
 
     public static Obra[] aumentarColeccion(Obra[] coleccion) {

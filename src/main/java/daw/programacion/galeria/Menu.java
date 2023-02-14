@@ -5,6 +5,7 @@ import static daw.programacion.galeria.Mensajes.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import daw.programacion.obras.Escultura;
 import daw.programacion.obras.Obra;
 
 public class Menu {
@@ -44,7 +45,7 @@ public class Menu {
             if (num == 1) {
                 Obra.visualizarObras(todo);
             } else if (num == 2) {
-                Obra obraNueva = new Obra();
+                Escultura obraNueva = new Escultura();
                 System.out.println(TIPO);
                 String tipo = Menu.scannerString().toLowerCase();
                 obraNueva = preguntarObra();
@@ -111,7 +112,7 @@ public class Menu {
         return scString.nextDouble();
     }
 
-    public static Obra preguntarObra(){
+    public static Escultura preguntarObra(){
         System.out.println(ID);
         int id = scannerInt();
         System.out.println(NOMBRE);
@@ -128,7 +129,7 @@ public class Menu {
         int piezas = scannerInt();
         System.out.println(DESC);
         String desc = scannerString();
-        Obra obraNueva = new Obra(id, nombre, autor, precio, altura, peso, piezas, desc);
+        Escultura obraNueva = new Escultura(id, nombre, autor, precio, altura, peso, piezas, desc, null);
         return obraNueva;
     }
 }

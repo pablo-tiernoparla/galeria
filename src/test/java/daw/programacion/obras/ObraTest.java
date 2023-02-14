@@ -14,7 +14,7 @@ public class ObraTest {
 
     @BeforeEach
     void crearObjetoObra() {
-        obra1 = new Obra(1, "Abc", "Raul", 2.1, 2.2, 2.3, 4, "esto es la descripcion");
+        obra1 = new Escultura(1, "Abc", "Raul", 2.1, 2.2, 2.3, 4, "esto es la descripcion", "hierro");
         obra2 = new Pictorica(2, "qwe", "Pablo", 4, 5, 6, 7, "descripcion", "oleo");
     }
 
@@ -212,7 +212,7 @@ public class ObraTest {
 
     @Test
     void copyFunciona(){
-        Obra obraCopy = new Obra(0, null, null, 0, 0, 0, 0, null);
+        Obra obraCopy = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
         obraCopy.copy(obra1);
         assertTrue(obra1.getId() == (obraCopy.getId()));
     }
