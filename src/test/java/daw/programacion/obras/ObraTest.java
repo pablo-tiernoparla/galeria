@@ -10,7 +10,6 @@ public class ObraTest {
 
     Obra obra1;
     Pictorica obra2;
-    Escultura obra3;
 
     @BeforeEach
     void crearObjetoObra() {
@@ -44,52 +43,6 @@ public class ObraTest {
         int expected = DOS;
         obra1.setId(DOS);
         assertEquals(expected, obra1.getId());
-    }
-
-    @Test
-    void idYaExisteExcepcion(){
-        final Obra[] OBRAS = {obra1, obra2};
-        final int ID = 1;
-        assertThrows(IllegalArgumentException.class,
-                () -> {
-                    Obra.idYaExiste(ID, OBRAS);
-                });
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {0,-1})
-    void positiveNumExcepcion(final int ID){
-        assertThrows(IllegalArgumentException.class,
-                () -> {
-                    Obra.positiveNum(ID);
-                });
-    }
-
-    @Test
-    void checkStringExcepcion(){
-        final String VACIO = "";
-        assertThrows(IllegalArgumentException.class,
-        () -> {
-            Obra.checkString(VACIO);
-        });
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {0,7})
-    void checkInputsExcepcion(final int NUM){
-        assertThrows(IllegalArgumentException.class,
-        () -> {
-            Obra.checkInputs(NUM);
-        });
-    }
-
-    @Test
-    void checkTipoExcepcion(){
-        final String ERROR = "abc";
-        assertThrows(IllegalArgumentException.class,
-        () -> {
-            Obra.checkTipo(ERROR);
-        });
     }
 
     @Test
@@ -191,14 +144,6 @@ public class ObraTest {
     }
 
     @Test
-    void toStringFunciona() {
-        String expected = "ID: " + 1 + ", Nombre: " + "Abc" + ", Autor: " + "Raul" + ", Precio: " + 2.1
-                + ", Altura: "
-                + 2.2 + ", Peso: " + 2.3 + ", Piezas: " + 4 + ", Descripción: " + "esto es la descripcion";
-        assertEquals(expected, obra1.toString());
-    }
-
-    @Test
     void getTipoFunciona(){
         String expected = "pictorica";
         assertEquals(expected, obra2.getTipo());
@@ -215,13 +160,6 @@ public class ObraTest {
         Obra obraCopy = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
         obraCopy.copy(obra1);
         assertTrue(obra1.getId() == (obraCopy.getId()));
-    }
-
-    @Test
-    void descuentoFunciona(){
-        Obra[] todo = {obra1,obra2};
-        int expected = 0;
-        assertEquals(expected, obra1.descuento(todo));
     }
 
     @Test

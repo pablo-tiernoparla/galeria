@@ -41,7 +41,7 @@ public class Menu {
 
     public static Obra[] cambiarActividad(int num, Obra[] todo) throws IllegalArgumentException {
         try {
-            Obra.checkInputs(num);
+            checkInputs(num);
             if (num == 1) {
                 Obra.visualizarObras(todo);
             } else if (num == 2) {
@@ -58,19 +58,19 @@ public class Menu {
                 menuModificarObra();
                 int modificacion = scannerInt();
                 System.out.println(SELECCION_VALOR);
-                todo[Obra.findId(idSeleccion, todo)].modificarObra(todo, modificacion);
+                todo[findId(idSeleccion, todo)].modificarObra(todo, modificacion);
             } else if (num == 4) {
                 System.out.println(SELECCIONAR_ID);
                 int idSeleccion = scannerInt();
-                todo[Obra.findId(idSeleccion, todo)].visualizarDatosObra(todo);
+                todo[findId(idSeleccion, todo)].visualizarDatosObra(todo);
             } else if (num == 5) {
                 System.out.println(SELECCIONAR_ID);
                 int idSeleccion = scannerInt();
-                todo[Obra.findId(idSeleccion, todo)].obtenerPrecio(todo);
+                todo[findId(idSeleccion, todo)].obtenerPrecio(todo);
             } else if (num == 6) {
                 System.out.println(SELECCIONAR_ID);
                 int idSeleccion = scannerInt();
-                todo[Obra.findId(idSeleccion, todo)].imprimirEtiqueta(todo);
+                todo[findId(idSeleccion, todo)].imprimirEtiqueta(todo);
             } else if (num == 0) {
                 Obra[] end = new Obra[0];
                 return end;
@@ -131,5 +131,52 @@ public class Menu {
         String desc = scannerString();
         Escultura obraNueva = new Escultura(id, nombre, autor, precio, altura, peso, piezas, desc, null);
         return obraNueva;
+    }
+
+    //escepciones
+    public static void positiveNum(double num) throws IllegalArgumentException{
+        if(!(num > 0)){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void idYaExiste(int num, Obra[] todo) throws IllegalArgumentException {
+        for (int i = 0; i < todo.length; i++) {
+            if (todo[i] == null) {
+                continue;
+            } else if (num == todo[i].getId()) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    public static void checkInputs(int num) throws IllegalArgumentException {
+        if (!(num >= 0 && num < 7)) {
+            throw new IllegalArgumentException();
+        }
+    }
+    
+    public static void checkTipo(String tipo) throws IllegalArgumentException {
+        if (!(tipo.equals(PICTORICA) && tipo.equals(ESCULTURA))) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void checkString(String checked) throws IllegalArgumentException{
+        if (checked.equals("")){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static int findId(int num, Obra[] todo) throws IllegalArgumentException {
+        int index;
+        for (index = 0; index < todo.length; index++) {
+            if (num == todo[index].getId()) {
+                break;
+            } else if (index == todo.length - 1 && todo[todo.length - 1].getId() != index) {
+                throw new IllegalArgumentException();
+            }
+        }
+        return index;
     }
 }
