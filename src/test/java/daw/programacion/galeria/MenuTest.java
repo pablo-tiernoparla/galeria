@@ -69,4 +69,10 @@ public class MenuTest {
             Menu.checkTipo(ERROR);
         });
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0,1,2,3,4,5,6})
+    void cambiarActividadEntraEnTodos(final int NUM){
+        
+    }
 }

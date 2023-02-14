@@ -118,10 +118,6 @@ public abstract class Obra {
         return this.tipo;
     }
 
-    public Obra cambiarTipo(){
-        return null;
-    }
-
     public void copy(Obra copy) {
         this.id = copy.id;
         this.nombre = copy.nombre;
@@ -141,6 +137,8 @@ public abstract class Obra {
     public abstract void check(String tipo);
 
     public abstract Obra darDeAltaTipo();
+
+    public abstract Obra cambiarTipo();
 
     public static Obra[] cargarObras() {
         Pictorica guernica = new Pictorica(1, "Guernica", "P.Picasso", 1000, 5, 2, 5, "cuadro guerra civil", "Óleo");
@@ -241,7 +239,7 @@ public abstract class Obra {
     }
 
     public static double toDolar(double euro) {
-        return euro / 0.99;
+        return euro * 0.99;
     }
 
     public double toKilo(double tonelada) {
