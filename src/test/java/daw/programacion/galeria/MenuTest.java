@@ -70,9 +70,32 @@ public class MenuTest {
         });
     }
 
+    @Test
+    void findIdFunciona(){
+        Obra[] todo = {obra1, obra2};
+        int expected = 1;
+        assertEquals(expected, Menu.findId(obra2.getId(), todo));
+    }
+
     @ParameterizedTest
-    @ValueSource(ints = {0,1,2,3,4,5,6})
-    void cambiarActividadEntraEnTodos(final int NUM){
-        
+    @ValueSource(ints = {1,3,4,5,6})
+    void cambiarActividadEntraSinCambiarArray(final int NUM){
+        Obra[] todo = {obra1, obra2};
+        Obra[] expected = todo;
+        assertEquals(expected, Menu.cambiarActividad(NUM, todo));
+    }
+
+    @Test
+    void cambiarActividadAñadeLongitud(){
+        Obra[] todo = {obra1, obra2};
+        int expected = todo.length+1;
+        assertEquals(expected, Menu.cambiarActividad(2, todo).length);
+    }
+
+    @Test
+    void cambiaRActividadAcabaElBucle(){
+        Obra[] todo = {obra1,obra2};
+        int expected = 0;
+        assertEquals(expected, Menu.cambiarActividad(0, todo).length);
     }
 }

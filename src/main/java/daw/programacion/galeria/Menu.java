@@ -133,7 +133,7 @@ public class Menu {
         return obraNueva;
     }
 
-    //escepciones
+    //excepciones
     public static void positiveNum(double num) throws IllegalArgumentException{
         if(!(num > 0)){
             throw new IllegalArgumentException();
