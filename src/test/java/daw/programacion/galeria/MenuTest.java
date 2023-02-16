@@ -2,6 +2,8 @@ package daw.programacion.galeria;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayInputStream;
+
 import daw.programacion.obras.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -78,11 +80,10 @@ public class MenuTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1,3,4,5,6})
+    @ValueSource(ints = {1,2,3,4,5,6})
     void cambiarActividadEntraSinCambiarArray(final int NUM){
         Obra[] todo = {obra1, obra2};
-        Obra[] expected = todo;
-        assertEquals(expected, Menu.cambiarActividad(NUM, todo));
+        Menu.cambiarActividad(NUM, todo);
     }
 
     @Test

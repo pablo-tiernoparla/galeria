@@ -2,7 +2,11 @@ package daw.programacion.obras;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class ObraTest {
 
@@ -12,7 +16,7 @@ public class ObraTest {
     @BeforeEach
     void crearObjetoObra() {
         obra1 = new Escultura(1, "Abc", "Raul", 2.1, 2.2, 2.3, 4, "esto es la descripcion", "hierro");
-        obra2 = new Pictorica(2, "qwe", "Pablo", 4, 5, 6, 7, "descripcion", "oleo");
+        obra2 = new Pictorica(2, "qwe", "Pablo", 4, 1, 0.00003, 7, "descripcion", "oleo");
     }
 
     @AfterEach
@@ -173,9 +177,8 @@ public class ObraTest {
         Pictorica sueño = new Pictorica(3, "El Sueño", "P.Picasso", 300, 1.3, 1, 1, "óleo", "Óleo");
         Pictorica retrato = new Pictorica(4, "Retrato de Dora Maar", "P.Picasso", 400, 1, 0.8, 1, "óleo", "Óleo");
         Escultura pielRoja = new Escultura(5, "El piel roja", "U.Checa", 350, 1, 0.8, 1, "escultura", "Bronce");
-        Obra[] exposicion = { guernica, vie, sueño, retrato, pielRoja };
-        Obra[] expected = exposicion;
-        assertEquals(expected, Obra.cargarObras());
+        Obra[] expected = { guernica, vie, sueño, retrato, pielRoja };
+        assertTrue(Arrays.equals(expected, Obra.cargarObras()));
     }
 
     @Test
@@ -190,4 +193,63 @@ public class ObraTest {
         double expected = 0.99;
         assertEquals(expected, Obra.toDolar(num));
     }
+
+    @Test
+    void toKiloFunciona(){
+        int expected = 1000;
+        assertEquals(expected, obra1.toKilo(1));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"escultura", "pictorica"})
+    public void darDeAltaEntraEnAmbasSubclases(String tipo){
+        Obra[] todo = {obra1,obra2};
+        obra1.darDeAltaUnaObra(todo, tipo);
+    }
+
+    @Test
+    public void arrayNoAumentaSiFallaDarDeAlta(){
+        Obra[] todo = {obra1, obra2};
+        int expected = todo.length;
+        assertEquals(expected, obra1.darDeAltaUnaObra(todo, "abc").length);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0,1,2,3,4,5,6,7,8,9,10})
+    void modificarObraEntraEnTodo(int num){
+        Obra[] todo = {obra1,obra2};
+        obra1.modificarObra(todo, num);
+    }
+
+    @Test
+    public void precioPorPesoPorEncimaDelLimite(){
+        double expected = 100;
+        assertEquals(expected, obra1.precioPorPeso());
+    }
+
+    @Test
+    public void precioPorPesoPorDebajoDelLimite(){
+        double expected = 20;
+        assertEquals(expected, obra2.precioPorPeso());
+    }
+
+    @Test
+    public void precioPorAlturaPorEncimaDelLimite(){
+        double expected = 400;
+        assertEquals(expected, obra1.precioPorAltura());
+    }
+
+    @Test
+    public void precioPorAlturaPorDebajoDelLimite(){
+        double expected = 140;
+        assertEquals(expected, obra2.precioPorAltura());
+    }
+
+    @Test
+    public void precioPorPiezasFunciona(){
+        double expected = 50;
+        assertEquals(expected, obra2.precioPorPiezas());
+    }
+
+    
 }

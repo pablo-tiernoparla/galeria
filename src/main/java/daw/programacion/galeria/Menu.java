@@ -42,16 +42,16 @@ public class Menu {
     public static Obra[] cambiarActividad(int num, Obra[] todo) throws IllegalArgumentException {
         try {
             checkInputs(num);
-            if (num == 1) {
+            if (num == SELECCION_MENU[1]) {
                 Obra.visualizarObras(todo);
-            } else if (num == 2) {
+            } else if (num == SELECCION_MENU[2]) {
                 Escultura obraNueva = new Escultura();
                 System.out.println(TIPO);
                 String tipo = Menu.scannerString().toLowerCase();
                 obraNueva = preguntarObra();
                 Obra[] placeHolder = obraNueva.darDeAltaUnaObra(todo, tipo);
                 return placeHolder;
-            } else if (num == 3) {
+            } else if (num == SELECCION_MENU[3]) {
                 System.out.println(SELECCIONAR_ID);
                 int idSeleccion = scannerInt();
                 System.out.println(SELECCIONAR_MOD);
@@ -59,19 +59,19 @@ public class Menu {
                 int modificacion = scannerInt();
                 System.out.println(SELECCION_VALOR);
                 todo[findId(idSeleccion, todo)].modificarObra(todo, modificacion);
-            } else if (num == 4) {
+            } else if (num == SELECCION_MENU[4]) {
                 System.out.println(SELECCIONAR_ID);
                 int idSeleccion = scannerInt();
                 todo[findId(idSeleccion, todo)].visualizarDatosObra(todo);
-            } else if (num == 5) {
+            } else if (num == SELECCION_MENU[5]) {
                 System.out.println(SELECCIONAR_ID);
                 int idSeleccion = scannerInt();
                 todo[findId(idSeleccion, todo)].obtenerPrecio(todo);
-            } else if (num == 6) {
+            } else if (num == SELECCION_MENU[6]) {
                 System.out.println(SELECCIONAR_ID);
                 int idSeleccion = scannerInt();
                 todo[findId(idSeleccion, todo)].imprimirEtiqueta(todo);
-            } else if (num == 0) {
+            } else if (num == SELECCION_MENU[0]) {
                 Obra[] end = new Obra[0];
                 return end;
             }

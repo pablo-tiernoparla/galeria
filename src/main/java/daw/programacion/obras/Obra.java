@@ -246,38 +246,38 @@ public abstract class Obra {
         return tonelada * 1000;
     }
 
-    public double precioPorPeso(Obra[] todo) {
+    public double precioPorPeso() {
         double suma = 0;
         if (toKilo(this.getPeso()) > PESO_LIMITE) {
             suma += IMPORTE_MAX;
             System.out.println(IMPORTE_PESO + toDolar(IMPORTE_MAX));
         } else {
-            suma += IMPORTE_MAX;
+            suma += IMPORTE_MIN;
             System.out.println(IMPORTE_PESO + toDolar(IMPORTE_MIN));
         }
         return suma;
     }
 
-    public double precioPorAltura(Obra[] todo) {
+    public double precioPorAltura() {
         double precioAltura = 0;
         double suma = 0;
         if (this.getAltura() > ALTURA_LIMITE) {
             for (int i = 0; i < this.getPiezas(); i++) {
                 precioAltura += IMPORTE_MAX;
-                suma = precioAltura;
+                suma = IMPORTE_MAX;
             }
             System.out.println(IMPORTE_ALTURA + toDolar(precioAltura));
         } else {
             for (int i = 0; i < this.getPiezas(); i++) {
                 precioAltura += IMPORTE_MIN;
-                suma += precioAltura;
+                suma += IMPORTE_MIN;
             }
             System.out.println(IMPORTE_ALTURA + toDolar(precioAltura));
         }
         return suma;
     }
 
-    public double precioPorPiezas(Obra[] todo) {
+    public double precioPorPiezas() {
         double suma = 0;
         if (this.getPiezas() > PIEZAS_LIMITE) {
             for (int i = 2; i < this.getPiezas(); i++) {
@@ -288,20 +288,20 @@ public abstract class Obra {
         return suma;
     }
 
-    public double precioFinalSinDescuento(Obra[] todo) {
+    public double precioFinalSinDescuento() {
         double suma = 0;
         System.out.println(COMISION + toDolar(this.getPrecio() * COMISION_GALERIA));
         suma += (this.getPrecio() * COMISION_GALERIA);
-        suma += precioPorPeso(todo);
-        suma += precioPorAltura(todo);
-        suma += precioPorPiezas(todo);
+        suma += precioPorPeso();
+        suma += precioPorAltura();
+        suma += precioPorPiezas();
         System.out.println(VENTA + toDolar(suma));
         return suma;
     }
 
     public double precioFinal(Obra[] todo) {
         double suma = 0;
-        suma += precioFinalSinDescuento(todo);
+        suma += precioFinalSinDescuento();
         suma += this.descuento(todo);
         System.out.println(PRECIO_FINAL + toDolar(suma));
         return suma;
