@@ -36,7 +36,7 @@ public class Pictorica extends Obra {
     }
 
     @Override
-    public double descuento(Obra[] todo) {
+    public double descuento() {
         double suma = 0;
         System.out.println(DESCUENTO_10 + toDolar((this.getPrecio() * DESCUENTO_PIC)));
         suma += (this.getPrecio() * DESCUENTO_PIC);

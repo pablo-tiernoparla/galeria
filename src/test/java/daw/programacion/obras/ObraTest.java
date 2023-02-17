@@ -251,5 +251,17 @@ public class ObraTest {
         assertEquals(expected, obra2.precioPorPiezas());
     }
 
-    
+    @Test
+    public void precioFinalSinDescuento(){
+        double expected = 215;
+        assertEquals(expected, obra2.precioFinalSinDescuento());
+    }
+
+    @Test
+    public void precioFinalFunciona(){
+        double expected = 215.4;
+        assertEquals(expected, obra2.precioFinal());
+    }
+
+
 }

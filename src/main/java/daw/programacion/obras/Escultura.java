@@ -38,7 +38,7 @@ public class Escultura extends Obra {
     }
 
     @Override
-    public double descuento(Obra[] todo) {
+    public double descuento() {
         double suma = 0;
         System.out.println(DESCUENTO_20 + toDolar((this.getPrecio() * DESCUENTO_ESC)));
         suma += (this.getPrecio() * DESCUENTO_ESC);

@@ -130,7 +130,7 @@ public abstract class Obra {
     }
 
     //solo estan para hacer override
-    public abstract double descuento(Obra[] todo);
+    public abstract double descuento();
     
     public abstract Obra modificarEspecialidad(Obra[] todo);
 
@@ -299,10 +299,10 @@ public abstract class Obra {
         return suma;
     }
 
-    public double precioFinal(Obra[] todo) {
+    public double precioFinal() {
         double suma = 0;
         suma += precioFinalSinDescuento();
-        suma += this.descuento(todo);
+        suma += this.descuento();
         System.out.println(PRECIO_FINAL + toDolar(suma));
         return suma;
     }
@@ -313,7 +313,7 @@ public abstract class Obra {
         System.out.println(PESO + this.getPeso());
         System.out.println(PIEZAS + this.getPiezas());
         System.out.println(PRECIO + this.getPrecio());
-        precioFinal(todo);
+        precioFinal();
     }
 
     public void imprimirEtiqueta(Obra[] todo) {
