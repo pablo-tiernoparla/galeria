@@ -54,5 +54,30 @@ public class PictoricaTest {
         assertEquals(expected, obra1.toString());
     }
 
-    
+    @Test
+    public void descuentoFunciona(){
+        double expected = 0.4;
+        assertEquals(expected, obra1.descuento());
+    }
+
+    @Test
+    public void modificarEspecialidadFuncionaPictorica(){
+        String expected = "acuarela";
+        obra1.modificarEspecialidad();
+        assertEquals(expected, obra1.getTecnica());
+    }
+
+    @Test
+    public void cambiarTipoFunciona(){
+        String expected = "escultura";
+        obra1.cambiarTipo();
+        assertEquals(expected, obra1.getTipo());
+    }
+
+    @Test
+    public void darDeAltaTipoEscultura(){
+        String expected = "acrilica";
+        obra1.darDeAltaTipo();
+        assertEquals(expected, obra1.getTecnica());
+    }
 }
