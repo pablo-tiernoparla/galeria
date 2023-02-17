@@ -99,4 +99,28 @@ public class MenuTest {
         int expected = 0;
         assertEquals(expected, Menu.cambiarActividad(0, todo).length);
     }
+
+    @Test
+    public void positiveNumFunciona(){
+        double num = 2;
+        Menu.positiveNum(num);
+    }
+
+    @Test
+    public void checkInputsFunciona(){
+        int num = 2;
+        Menu.checkInputs(num);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"pictorica","escultura"})
+    public void checkTipoFunciona(String tipo){
+        Menu.checkTipo(tipo);
+    }
+
+    @Test
+    public void checkStringFunciona(){
+        String abc = "abc";
+        Menu.checkString(abc);
+    }
 }

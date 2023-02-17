@@ -157,7 +157,7 @@ public class Menu {
     }
     
     public static void checkTipo(String tipo) throws IllegalArgumentException {
-        if (!(tipo.equals(PICTORICA) && tipo.equals(ESCULTURA))) {
+        if (!(tipo.equals(PICTORICA) || tipo.equals(ESCULTURA))) {
             throw new IllegalArgumentException();
         }
     }
