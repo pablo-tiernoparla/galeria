@@ -54,5 +54,30 @@ public class EsculturaTest {
         assertEquals(expected, obra1.toString());
     }
 
-    
+    @Test
+    public void descuentoFunciona(){
+        double expected = 50.42;
+        assertEquals(expected, obra1.descuento());
+    }
+
+    @Test
+    public void modificarEspecialidadFuncionaEscultura(){
+        String expected = "bronce";
+        obra1.modificarEspecialidad();
+        assertEquals(expected, obra1.getMaterial());
+    }
+
+    @Test
+    public void cambiarTipoFunciona(){
+        String expected = "pictorica";
+        obra1.cambiarTipo();
+        assertEquals(expected, obra1.getTipo());
+    }
+
+    @Test
+    public void darDeAltaTipoEscultura(){
+        String expected = "cobre";
+        obra1.darDeAltaTipo();
+        assertEquals(expected, obra1.getMaterial());
+    }
 }

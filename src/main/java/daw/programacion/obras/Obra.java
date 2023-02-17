@@ -132,7 +132,7 @@ public abstract class Obra {
     //solo estan para hacer override
     public abstract double descuento();
     
-    public abstract Obra modificarEspecialidad(Obra[] todo);
+    public abstract Obra modificarEspecialidad();
 
     public abstract void check(String tipo);
 
@@ -218,7 +218,7 @@ public abstract class Obra {
             double peso = Menu.scannerDouble();
             this.setPeso(peso);
         } else if (valor == SELECCION[7]) {
-            this.modificarEspecialidad(todo);
+            this.modificarEspecialidad();
         } else if (valor == SELECCION[8]) {
             int piezas = Menu.scannerInt();
             this.setPiezas(piezas);

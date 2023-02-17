@@ -48,7 +48,7 @@ public class Escultura extends Obra {
     }
 
     @Override
-    public Obra modificarEspecialidad(Obra[] todo) {
+    public Obra modificarEspecialidad() {
         Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
         esculturaNueva.copy(this);
         System.out.println(TIPOS_MATERIAL);

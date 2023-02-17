@@ -44,7 +44,7 @@ public class Pictorica extends Obra {
     }
 
     @Override
-    public Obra modificarEspecialidad(Obra[] todo) {
+    public Obra modificarEspecialidad() {
         Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
         picNueva.copy(this);
         System.out.println(TIPOS_TECNICA);
