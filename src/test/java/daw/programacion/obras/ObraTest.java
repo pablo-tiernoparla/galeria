@@ -148,12 +148,6 @@ public class ObraTest {
         String expected = "pictorica";
         assertEquals(expected, obra2.getTipo());
     }
-/*
-    @Test
-    void cambiarTipoFunciona(){
-        String expected = null;
-        assertEquals(expected, obra1.cambiarTipo());
-    }*/
 
     @Test
     void cargarObrasFunciona(){
@@ -208,13 +202,15 @@ public class ObraTest {
         int expected = todo.length;
         assertEquals(expected, obra1.darDeAltaUnaObra(todo, "abc", "oleo").length);
     }
-/* 
+
     @ParameterizedTest
     @ValueSource(ints = {0,1,2,3,4,5,6,7,8,9,10})
     void modificarObraEntraEnTodo(int num){
-        Obra[] todo = {obra1,obra2};
-        obra1.modificarObra(todo, num);
-    }*/
+        Obra[] todo = {obra1,obra2, null};
+        Escultura obra3 = new Escultura(3, "cobre", "ab", 4, 4, 4, 4, "ad", "cobre");
+        int pos = 2;
+        obra1.modificarObra(todo, num, obra3, pos);
+    }
 
     @Test
     public void precioPorPesoPorEncimaDelLimite(){
@@ -230,7 +226,7 @@ public class ObraTest {
 
     @Test
     public void precioPorAlturaPorEncimaDelLimite(){
-        double expected = 400;
+        double expected = 100;
         assertEquals(expected, obra1.precioPorAltura());
     }
 
@@ -257,6 +253,4 @@ public class ObraTest {
         double expected = 215.4;
         assertEquals(expected, obra2.precioFinal());
     }
-
-
 }

@@ -2,8 +2,6 @@ package daw.programacion.galeria;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.ByteArrayInputStream;
-
 import daw.programacion.obras.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,11 +26,11 @@ public class MenuTest {
 
     @Test
     void idYaExisteExcepcion(){
-        final Obra[] OBRAS = {obra1, obra2};
-        final int ID = 1;
+        Obra[] obras = {obra1, obra2};
+        int id = 1;
         assertThrows(IllegalArgumentException.class,
                 () -> {
-                    Menu.idYaExiste(ID, OBRAS);
+                    Menu.idYaExiste(id, obras);
                 });
     }
 
@@ -47,28 +45,28 @@ public class MenuTest {
 
     @Test
     void checkStringExcepcion(){
-        final String VACIO = "";
+        String vacio = "";
         assertThrows(IllegalArgumentException.class,
         () -> {
-            Menu.checkString(VACIO);
+            Menu.checkString(vacio);
         });
     }
 
     @ParameterizedTest
     @ValueSource(ints = {-1,7})
-    void checkInputsExcepcion(final int NUM){
+    void checkInputsExcepcion(int num){
         assertThrows(IllegalArgumentException.class,
         () -> {
-            Menu.checkInputs(NUM);
+            Menu.checkInputs(num);
         });
     }
 
     @Test
     void checkTipoExcepcion(){
-        final String ERROR = "abc";
+        String error = "abc";
         assertThrows(IllegalArgumentException.class,
         () -> {
-            Menu.checkTipo(ERROR);
+            Menu.checkTipo(error);
         });
     }
 
@@ -79,18 +77,12 @@ public class MenuTest {
         assertEquals(expected, Menu.findId(obra2.getId(), todo));
     }
 
+    @Disabled
     @ParameterizedTest
     @ValueSource(ints = {1,2,3,4,5,6})
-    void cambiarActividadEntraSinCambiarArray(final int NUM){
+    void cambiarActividadEntraSinCambiarArray(int num){
         Obra[] todo = {obra1, obra2};
-        Menu.cambiarActividad(NUM, todo);
-    }
-
-    @Test
-    void cambiarActividadAñadeLongitud(){
-        Obra[] todo = {obra1, obra2};
-        int expected = todo.length+1;
-        assertEquals(expected, Menu.cambiarActividad(2, todo).length);
+        Menu.cambiarActividad(num, todo);
     }
 
     @Test

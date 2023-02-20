@@ -44,18 +44,16 @@ public class Pictorica extends Obra {
     }
 
     @Override
-    public Obra modificarEspecialidad(String spec) {
-        Pictorica picNueva = new Pictorica(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, spec);
-        picNueva.check(spec);
+    public Obra modificarEspecialidad(Obra variableHolder) {
+        Pictorica picNueva = new Pictorica(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, variableHolder.nombre);
         return picNueva;
     }
 
     @Override
     public Escultura cambiarTipo(String spec) {
-        Escultura esculturaNueva = new Escultura(0, this.nombre, this.autor, this.precio, this.altura, this.peso,
-                this.piezas, this.desc, null);
+        Escultura esculturaNueva = new Escultura(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso,
+                this.piezas, this.desc, spec);
         esculturaNueva.check(spec);
-        esculturaNueva.setMaterial(spec);
         this.getTecnica();
         return esculturaNueva;
     }

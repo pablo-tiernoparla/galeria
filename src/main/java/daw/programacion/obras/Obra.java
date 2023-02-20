@@ -114,7 +114,7 @@ public abstract class Obra {
     //solo estan para hacer override
     public abstract double descuento();
     
-    public abstract Obra modificarEspecialidad(String spec);
+    public abstract Obra modificarEspecialidad(Obra variableHolder);
 
     public abstract void check(String tipo);
 
@@ -151,15 +151,7 @@ public abstract class Obra {
         try {
             Obra[] placeHolder = aumentarColeccion(todo);
             Obra obraNueva = null;
-            if (tipo.equals(PICTORICA)) {
-                Pictorica picNueva = new Pictorica(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, valor);
-                obraNueva = picNueva;
-            } else if (tipo.equals(ESCULTURA)) {
-                Escultura esculturaNueva = new Escultura(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, valor);
-                obraNueva = esculturaNueva;
-            } else {
-                throw new IllegalArgumentException();
-            }
+            obraNueva = this.cambiarTipo(valor);
             placeHolder[placeHolder.length - 1] = obraNueva;
             return placeHolder;
         } catch (IllegalArgumentException wrong) {
@@ -169,42 +161,36 @@ public abstract class Obra {
         }
     }
 
-    public void modificarObra(Obra[] todo, int valor, int intVal, String strVal, double dbVal,int pos) {
+    public void modificarObra(Obra[] todo, int valor, Obra variableHolder, int pos) {
         if (valor == SELECCION[0]) {
             return;
         }
         if (valor == SELECCION[10]) {
             if (this.tipo.equals(PICTORICA)) {
-                Escultura escNueva = new Escultura(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, strVal);
+                Escultura escNueva = new Escultura(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, variableHolder.nombre);
                 todo[pos] = escNueva;
             } else if (this.tipo.equals(ESCULTURA)) {
-                Pictorica picNueva = new Pictorica(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, strVal);
+                Pictorica picNueva = new Pictorica(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, variableHolder.nombre);;
                 todo[pos] = picNueva;
             }
         } else if (valor == SELECCION[1]) {
-            this.setIdCheck(intVal, todo);
+            this.setIdCheck(variableHolder.id, todo);
         } else if (valor == SELECCION[2]) {
-            this.setNombre(strVal);
+            this.setNombre(variableHolder.nombre);
         } else if (valor == SELECCION[3]) {
-            this.setAutor(strVal);
+            this.setAutor(variableHolder.autor);
         } else if (valor == SELECCION[4]) {
-            this.setPrecio(dbVal);
+            this.setPrecio(variableHolder.precio);
         } else if (valor == SELECCION[5]) {
-            this.setAltura(dbVal);
+            this.setAltura(variableHolder.altura);
         } else if (valor == SELECCION[6]) {
-            this.setPeso(dbVal);
+            this.setPeso(variableHolder.peso);
         } else if (valor == SELECCION[7]) {
-            if (this.tipo.equals(ESCULTURA)) {
-                Escultura escNueva = new Escultura(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, strVal);
-                todo[pos] = escNueva;
-            } else if (this.tipo.equals(PICTORICA)) {
-                Pictorica picNueva = new Pictorica(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, strVal);
-                todo[pos] = picNueva;
-            }
+            todo[pos] = this.modificarEspecialidad(variableHolder);
         } else if (valor == SELECCION[8]) {
-            this.setPiezas(intVal);
+            this.setPiezas(variableHolder.piezas);
         } else if (valor == SELECCION[9]) {
-            this.setDesc(strVal);
+            this.setDesc(variableHolder.desc);
         }
     }
 

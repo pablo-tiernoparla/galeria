@@ -49,10 +49,13 @@ public class Menu {
                 System.out.println(TIPO);
                 String tipo = Menu.scannerString().toLowerCase();
                 obraNueva = preguntarObra();
-                System.out.println(TIPOS_MATERIAL);
-                System.out.println(TIPOS_TECNICA);
+                if (tipo.equals(ESCULTURA)){
+                    System.out.println(TIPOS_MATERIAL);
+                } else if (tipo.equals(PICTORICA)){
+                    System.out.println(TIPOS_TECNICA);
+                }
                 String valor = scannerString().toLowerCase();
-                Obra[] placeHolder = obraNueva.darDeAltaUnaObra(todo, tipo,valor);
+                Obra[] placeHolder = obraNueva.darDeAltaUnaObra(todo, tipo, valor);
                 return placeHolder;
             } else if (num == SELECCION_MENU[3]) {
                 System.out.println(SELECCIONAR_ID);
@@ -61,22 +64,9 @@ public class Menu {
                 menuModificarObra();
                 int mod = scannerInt();
                 System.out.println(SELECCION_VALOR);
-                int intVal = 0;
-                double dbVal = 0;
-                String strVal = "";
-                if (mod == 1 || mod == 8) {
-                    intVal = scannerInt();
-                } else if (mod == 4 || mod == 5 || mod == 6){
-                    dbVal = scannerDouble();
-                } else if (mod==2||mod==3||mod==9){
-                    strVal = scannerString();
-                } else if (mod == 10||mod==7){
-                    System.out.println(TIPOS_MATERIAL);
-                    System.out.println(TIPOS_TECNICA);
-                    strVal = scannerString().toLowerCase();
-                }
+                Obra variableHolder = crearObraParametro(mod);
                 int pos = findId(idSeleccion, todo);
-                    todo[pos].modificarObra(todo, mod, intVal,strVal,dbVal,pos);
+                todo[pos].modificarObra(todo, mod, variableHolder, pos);
             } else if (num == SELECCION_MENU[4]) {
                 System.out.println(SELECCIONAR_ID);
                 int idSeleccion = scannerInt();
@@ -196,5 +186,24 @@ public class Menu {
             }
         }
         return index;
+    }
+
+    public static Obra crearObraParametro(int mod) {
+        int intVal = 0;
+        double dbVal = 0;
+        String strVal = "";
+        if (mod == SELECCION[1] || mod == SELECCION[8]) {
+            intVal = scannerInt();
+        } else if (mod == SELECCION[4] || mod == SELECCION[5] || mod == SELECCION[6]) {
+            dbVal = scannerDouble();
+        } else if (mod == SELECCION[2] || mod == SELECCION[3] || mod == SELECCION[9]) {
+            strVal = scannerString();
+        } else if (mod == SELECCION[10] || mod == SELECCION[7]) {
+            System.out.println(TIPOS_MATERIAL);
+            System.out.println(TIPOS_TECNICA);
+            strVal = scannerString().toLowerCase();
+        }
+        Escultura variableHolder = new Escultura(intVal, strVal, strVal, dbVal, dbVal, dbVal, intVal, strVal, strVal);
+        return variableHolder;
     }
 }
