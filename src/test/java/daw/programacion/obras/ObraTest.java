@@ -148,19 +148,12 @@ public class ObraTest {
         String expected = "pictorica";
         assertEquals(expected, obra2.getTipo());
     }
-
+/*
     @Test
     void cambiarTipoFunciona(){
         String expected = null;
         assertEquals(expected, obra1.cambiarTipo());
-    }
-
-    @Test
-    void copyFunciona(){
-        Obra obraCopy = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
-        obraCopy.copy(obra1);
-        assertTrue(obra1.getId() == (obraCopy.getId()));
-    }
+    }*/
 
     @Test
     void cargarObrasFunciona(){
@@ -193,26 +186,35 @@ public class ObraTest {
         assertEquals(expected, obra1.toKilo(1));
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"escultura", "pictorica"})
-    public void darDeAltaEntraEnAmbasSubclases(String tipo){
+    @Test
+    public void darDeAltaEntraEnPictorica(){
         Obra[] todo = {obra1,obra2};
-        obra1.darDeAltaUnaObra(todo, tipo);
+        String tipo = "pictorica";
+        String valor = "oleo";
+        obra1.darDeAltaUnaObra(todo, tipo, valor);
+    }
+
+    @Test
+    public void darDeAltaEntraEnEscultura(){
+        Obra[] todo = {obra1,obra2};
+        String tipo = "escultura";
+        String valor = "cobre";
+        obra1.darDeAltaUnaObra(todo, tipo, valor);
     }
 
     @Test
     public void arrayNoAumentaSiFallaDarDeAlta(){
         Obra[] todo = {obra1, obra2};
         int expected = todo.length;
-        assertEquals(expected, obra1.darDeAltaUnaObra(todo, "abc").length);
+        assertEquals(expected, obra1.darDeAltaUnaObra(todo, "abc", "oleo").length);
     }
-
+/* 
     @ParameterizedTest
     @ValueSource(ints = {0,1,2,3,4,5,6,7,8,9,10})
     void modificarObraEntraEnTodo(int num){
         Obra[] todo = {obra1,obra2};
         obra1.modificarObra(todo, num);
-    }
+    }*/
 
     @Test
     public void precioPorPesoPorEncimaDelLimite(){

@@ -48,31 +48,20 @@ public class Escultura extends Obra {
     }
 
     @Override
-    public Obra modificarEspecialidad() {
-        Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
-        esculturaNueva.copy(this);
-        System.out.println(TIPOS_MATERIAL);
-        esculturaNueva.setMaterial(Menu.scannerString().toLowerCase());
+    public Obra modificarEspecialidad(String spec) {
+        Escultura esculturaNueva = new Escultura(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, spec);
+        esculturaNueva.check(spec);
         return esculturaNueva;
     }
 
     @Override
-    public Obra cambiarTipo() {
+    public Pictorica cambiarTipo(String spec) {
         Pictorica pictoricaNueva = new Pictorica(0, this.nombre, this.autor, this.precio, this.altura, this.peso,
                 this.piezas, this.desc, null);
         System.out.println(TIPOS_TECNICA);
-        String tecnica = Menu.scannerString().toLowerCase();
-        pictoricaNueva.check(tecnica);
-        pictoricaNueva.setTecnica(tecnica);
+        pictoricaNueva.check(spec);
+        pictoricaNueva.setTecnica(spec);
+        System.out.println(this.getMaterial());
         return pictoricaNueva;
-    }
-
-    @Override
-    public Escultura darDeAltaTipo(){
-        System.out.println(TIPOS_MATERIAL);
-        String tipo = Menu.scannerString().toLowerCase();
-        this.check(tipo);
-        this.setMaterial(tipo);
-        return this;
     }
 }

@@ -49,7 +49,6 @@ public abstract class Obra {
     }
 
     public void setNombre(String nombre) {
-        Menu.checkString(nombre);
         this.nombre = nombre;
     }
 
@@ -58,7 +57,6 @@ public abstract class Obra {
     }
 
     public void setAutor(String autor) {
-        Menu.checkString(autor);
         this.autor = autor;
     }
 
@@ -67,7 +65,6 @@ public abstract class Obra {
     }
 
     public void setPrecio(double precio) {
-        Menu.positiveNum(precio);
         this.precio = precio;
     }
 
@@ -76,7 +73,6 @@ public abstract class Obra {
     }
 
     public void setAltura(double altura) {
-        Menu.positiveNum(altura);
         this.altura = altura;
     }
 
@@ -85,7 +81,6 @@ public abstract class Obra {
     }
 
     public void setPeso(double peso) {
-        Menu.positiveNum(peso);
         this.peso = peso;
     }
 
@@ -94,7 +89,6 @@ public abstract class Obra {
     }
 
     public void setPiezas(int piezas) {
-        Menu.positiveNum(piezas);
         this.piezas = piezas;
     }
 
@@ -103,7 +97,6 @@ public abstract class Obra {
     }
 
     public void setDesc(String desc) {
-        Menu.checkString(desc);
         this.desc = desc;
     }
 
@@ -118,27 +111,14 @@ public abstract class Obra {
         return this.tipo;
     }
 
-    public void copy(Obra copy) {
-        this.id = copy.id;
-        this.nombre = copy.nombre;
-        this.autor = copy.autor;
-        this.precio = copy.precio;
-        this.altura = copy.altura;
-        this.peso = copy.peso;
-        this.piezas = copy.piezas;
-        this.desc = copy.desc;
-    }
-
     //solo estan para hacer override
     public abstract double descuento();
     
-    public abstract Obra modificarEspecialidad();
+    public abstract Obra modificarEspecialidad(String spec);
 
     public abstract void check(String tipo);
 
-    public abstract Obra darDeAltaTipo();
-
-    public abstract Obra cambiarTipo();
+    public abstract Obra cambiarTipo(String spec);
 
     public static Obra[] cargarObras() {
         Pictorica guernica = new Pictorica(1, "Guernica", "P.Picasso", 1000, 5, 2, 5, "cuadro guerra civil", "Óleo");
@@ -167,18 +147,16 @@ public abstract class Obra {
         return coleccionNueva;
     }
 
-    public Obra[] darDeAltaUnaObra(Obra[] todo, String tipo) throws IllegalArgumentException {
+    public Obra[] darDeAltaUnaObra(Obra[] todo, String tipo,String valor) throws IllegalArgumentException {
         try {
             Obra[] placeHolder = aumentarColeccion(todo);
             Obra obraNueva = null;
             if (tipo.equals(PICTORICA)) {
-                Pictorica picNueva = new Pictorica(0, null, null, 0, 0, 0, 0, null, null);
-                picNueva.copy(this);
-                obraNueva = picNueva.darDeAltaTipo();
+                Pictorica picNueva = new Pictorica(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, valor);
+                obraNueva = picNueva;
             } else if (tipo.equals(ESCULTURA)) {
-                Escultura esculturaNueva = new Escultura(0, null, null, 0, 0, 0, 0, null, null);
-                esculturaNueva.copy(this);
-                obraNueva = esculturaNueva.darDeAltaTipo();
+                Escultura esculturaNueva = new Escultura(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, valor);
+                obraNueva = esculturaNueva;
             } else {
                 throw new IllegalArgumentException();
             }
@@ -191,40 +169,42 @@ public abstract class Obra {
         }
     }
 
-    public void modificarObra(Obra[] todo, int valor) {
+    public void modificarObra(Obra[] todo, int valor, int intVal, String strVal, double dbVal,int pos) {
         if (valor == SELECCION[0]) {
             return;
         }
         if (valor == SELECCION[10]) {
-            int save = this.getId();
-            this.cambiarTipo();
-            this.setId(save);
+            if (this.tipo.equals(PICTORICA)) {
+                Escultura escNueva = new Escultura(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, strVal);
+                todo[pos] = escNueva;
+            } else if (this.tipo.equals(ESCULTURA)) {
+                Pictorica picNueva = new Pictorica(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, strVal);
+                todo[pos] = picNueva;
+            }
         } else if (valor == SELECCION[1]) {
-            int id = Menu.scannerInt();
-            this.setIdCheck(id, todo);
+            this.setIdCheck(intVal, todo);
         } else if (valor == SELECCION[2]) {
-            String nombre = Menu.scannerString();
-            this.setNombre(nombre);
+            this.setNombre(strVal);
         } else if (valor == SELECCION[3]) {
-            String autor = Menu.scannerString();
-            this.setAutor(autor);
+            this.setAutor(strVal);
         } else if (valor == SELECCION[4]) {
-            double precio = Menu.scannerDouble();
-            this.setPrecio(precio);
+            this.setPrecio(dbVal);
         } else if (valor == SELECCION[5]) {
-            double altura = Menu.scannerDouble();
-            this.setAltura(altura);
+            this.setAltura(dbVal);
         } else if (valor == SELECCION[6]) {
-            double peso = Menu.scannerDouble();
-            this.setPeso(peso);
+            this.setPeso(dbVal);
         } else if (valor == SELECCION[7]) {
-            this.modificarEspecialidad();
+            if (this.tipo.equals(ESCULTURA)) {
+                Escultura escNueva = new Escultura(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, strVal);
+                todo[pos] = escNueva;
+            } else if (this.tipo.equals(PICTORICA)) {
+                Pictorica picNueva = new Pictorica(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, strVal);
+                todo[pos] = picNueva;
+            }
         } else if (valor == SELECCION[8]) {
-            int piezas = Menu.scannerInt();
-            this.setPiezas(piezas);
+            this.setPiezas(intVal);
         } else if (valor == SELECCION[9]) {
-            String desc = Menu.scannerString();
-            this.setDesc(desc);
+            this.setDesc(strVal);
         }
     }
 
