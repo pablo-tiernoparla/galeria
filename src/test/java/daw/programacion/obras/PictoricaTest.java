@@ -44,12 +44,12 @@ public class PictoricaTest {
 
     @ParameterizedTest
     @ValueSource(strings = { "oleo", "carboncillo", "acuarela", "acrilica" })
-    public void checkEsculturaValoresCorrectos(String tipo) {
+    public void checkPictoricaValoresCorrectos(String tipo) {
         obra1.check(tipo);
     }
 
     @Test
-    public void toStringEscultura() {
+    public void toStringPictorica() {
         String expected = "ID: 2, Nombre: qwe, Autor: Pablo, Precio: 4.0, Altura: 1.0, Peso: 3.0E-5, Piezas: 7, Descripción: descripcion, Tipo: pictorica, Técnica: oleo";
         assertEquals(expected, obra1.toString());
     }
@@ -59,18 +59,19 @@ public class PictoricaTest {
         double expected = 0.4;
         assertEquals(expected, obra1.descuento());
     }
-/* 
+ 
     @Test
     public void modificarEspecialidadFuncionaPictorica(){
         String expected = "acuarela";
-        obra1.modificarEspecialidad();
+        obra1 = obra1.modificarEspecialidad("acuarela");
         assertEquals(expected, obra1.getTecnica());
     }
 
     @Test
     public void cambiarTipoFunciona(){
         String expected = "escultura";
-        obra1.cambiarTipo();
-        assertEquals(expected, obra1.getTipo());
-    }*/
+        Obra obra3;
+        obra3 = obra1.cambiarTipo("cobre");
+        assertEquals(expected, obra3.getTipo());
+    }
 }

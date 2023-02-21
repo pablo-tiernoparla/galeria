@@ -111,7 +111,6 @@ public abstract class Obra {
         return this.tipo;
     }
 
-    //solo estan para hacer override
     public abstract double descuento();
     
     public abstract Obra modificarEspecialidad(String spec);
@@ -130,7 +129,6 @@ public abstract class Obra {
         return exposicion;
     }
 
-    //acciones
     public static void visualizarObras(Obra[] todo) {
         for (int i = 0; i < todo.length; i++) {
             if (todo[i] == null) {
@@ -141,7 +139,7 @@ public abstract class Obra {
         }
     }
 
-    public static Obra[] aumentarColeccion(Obra[] coleccion) {
+    public Obra[] aumentarColeccion(Obra[] coleccion) {
         Obra[] coleccionNueva = new Obra[coleccion.length + 1];
         System.arraycopy(coleccion, 0, coleccionNueva, 0, coleccion.length);
         return coleccionNueva;
@@ -191,7 +189,7 @@ public abstract class Obra {
         }
     }
 
-    public void visualizarDatosObra(Obra[] todo) {
+    public void visualizarDatosObra() {
         System.out.println(NOMBRE + this.getNombre());
         System.out.println(AUTOR + this.getAutor());
         System.out.println(PRECIO + this.getPrecio());
@@ -201,7 +199,7 @@ public abstract class Obra {
         System.out.println(DESC + this.getDesc());
     }
 
-    public static double toDolar(double euro) {
+    public double toDolar(double euro) {
         return euro * 0.99;
     }
 
@@ -270,7 +268,7 @@ public abstract class Obra {
         return suma;
     }
 
-    public void obtenerPrecio(Obra[] todo) {
+    public void obtenerPrecio() {
         System.out.println(NOMBRE + this.getNombre());
         System.out.println(ALTURA + this.getAltura());
         System.out.println(PESO + this.getPeso());
@@ -279,7 +277,7 @@ public abstract class Obra {
         precioFinal();
     }
 
-    public void imprimirEtiqueta(Obra[] todo) {
+    public void imprimirEtiqueta() {
         System.out.println(NOMBRE + this.getNombre());
         System.out.println(AUTOR + this.getAutor());
         System.out.println(DESC + this.getDesc());

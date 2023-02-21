@@ -13,7 +13,7 @@ public class ObraTest {
 
     @BeforeEach
     void crearObjetoObra() {
-        obra1 = new Escultura(1, "Abc", "Raul", 2.1, 2.2, 2.3, 4, "esto es la descripcion", "hierro");
+        obra1 = new Escultura(1, "Abc", "Raul", 2.1, 2.2, 2.3, 1, "esto es la descripcion", "hierro");
         obra2 = new Pictorica(2, "qwe", "Pablo", 4, 1, 0.00003, 7, "descripcion", "oleo");
     }
 
@@ -31,17 +31,9 @@ public class ObraTest {
 
     @Test
     void setIdFunciona() {
-        final int DOS = 2;
-        int expected = DOS;
-        obra1.setId(DOS);
-        assertEquals(expected, obra1.getId());
-    }
-
-    @Test
-    void setIdCheckFunciona(){
-        final int DOS = 2;
-        int expected = DOS;
-        obra1.setId(DOS);
+        int dos = 2;
+        int expected = dos;
+        obra1.setId(dos);
         assertEquals(expected, obra1.getId());
     }
 
@@ -53,9 +45,9 @@ public class ObraTest {
 
     @Test
     void setAutorFunciona() {
-        final String AUTOR_NUEVO = "Pablo";
-        String expected = AUTOR_NUEVO;
-        obra1.setAutor(AUTOR_NUEVO);
+        String autorNuevo = "Pablo";
+        String expected = autorNuevo;
+        obra1.setAutor(autorNuevo);
         assertEquals(expected, obra1.getAutor());
     }
 
@@ -67,9 +59,9 @@ public class ObraTest {
 
     @Test
     void setNombreFunciona() {
-        final String NOMBRE_NUEVO = "Qwe";
-        String expected = NOMBRE_NUEVO;
-        obra1.setNombre(NOMBRE_NUEVO);
+        String nombreNuevo = "Qwe";
+        String expected = nombreNuevo;
+        obra1.setNombre(nombreNuevo);
         assertEquals(expected, obra1.getNombre());
     }
 
@@ -81,9 +73,9 @@ public class ObraTest {
 
     @Test
     void setPrecioFunciona() {
-        final double PRECIO_NUEVO = 4.3;
-        double expected = PRECIO_NUEVO;
-        obra1.setPrecio(PRECIO_NUEVO);
+        double precioNuevo = 4.3;
+        double expected = precioNuevo;
+        obra1.setPrecio(precioNuevo);
         assertEquals(expected, obra1.getPrecio());
     }
 
@@ -95,9 +87,9 @@ public class ObraTest {
 
     @Test
     void setAlturaFunciona() {
-        final double ALTURA_NUEVA = 6.5;
-        double expected = ALTURA_NUEVA;
-        obra1.setAltura(ALTURA_NUEVA);
+        double alturaNueva = 6.5;
+        double expected = alturaNueva;
+        obra1.setAltura(alturaNueva);
         assertEquals(expected, obra1.getAltura());
     }
 
@@ -109,23 +101,23 @@ public class ObraTest {
 
     @Test
     void setPesoFunciona() {
-        final double PESO_NUEVO = 7.4;
-        double expected = PESO_NUEVO;
-        obra1.setPeso(PESO_NUEVO);
+        double pesoNuevo = 7.4;
+        double expected = pesoNuevo;
+        obra1.setPeso(pesoNuevo);
         assertEquals(expected, obra1.getPeso());
     }
 
     @Test
     void getPiezasFunciona() {
-        int expected = 4;
+        int expected = 1;
         assertEquals(expected, obra1.getPiezas());
     }
 
     @Test
     void setPiezasFunciona() {
-        final int PIEZAS_NUEVO = 8;
-        int expected = PIEZAS_NUEVO;
-        obra1.setPiezas(PIEZAS_NUEVO);
+        int piezasNuevo = 8;
+        int expected = piezasNuevo;
+        obra1.setPiezas(piezasNuevo);
         assertEquals(expected, obra1.getPiezas());
     }
 
@@ -137,9 +129,9 @@ public class ObraTest {
 
     @Test
     void setDescFunciona() {
-        final String DESC_NUEVA = "nueva descripcion";
-        String expected = DESC_NUEVA;
-        obra1.setDesc(DESC_NUEVA);
+        String descNueva = "nueva descripcion";
+        String expected = descNueva;
+        obra1.setDesc(descNueva);
         assertEquals(expected, obra1.getDesc());
     }
 
@@ -164,14 +156,14 @@ public class ObraTest {
     @Test
     void aumentarColeccionFunciona(){
         Obra[] base = new Obra[6];
-        assertEquals(base.length+1, Obra.aumentarColeccion(base).length);
+        assertEquals(base.length+1, obra1.aumentarColeccion(base).length);
     }
 
     @Test
     void toDolarFunciona(){
         double num = 1;
         double expected = 0.99;
-        assertEquals(expected, Obra.toDolar(num));
+        assertEquals(expected, obra1.toDolar(num));
     }
 
     @Test
@@ -235,9 +227,15 @@ public class ObraTest {
     }
 
     @Test
-    public void precioPorPiezasFunciona(){
+    public void precioPorPiezasPorEncimaDelLimite(){
         double expected = 50;
         assertEquals(expected, obra2.precioPorPiezas());
+    }
+
+    @Test
+    public void precioPorPiezasPorDebajoDelLimite(){
+        double expected = 0;
+        assertEquals(expected, obra1.precioPorPiezas());
     }
 
     @Test
@@ -250,5 +248,11 @@ public class ObraTest {
     public void precioFinalFunciona(){
         double expected = 215.4;
         assertEquals(expected, obra2.precioFinal());
+    }
+
+    @Test
+    public void visualizarObrasConNull(){
+        Obra[] obras = {obra1, null, obra2};
+        Obra.visualizarObras(obras);
     }
 }

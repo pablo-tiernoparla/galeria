@@ -36,10 +36,10 @@ public class MenuTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0,-1})
-    void positiveNumExcepcion(final int ID){
+    void positiveNumExcepcion(int id){
         assertThrows(IllegalArgumentException.class,
                 () -> {
-                    Menu.positiveNum(ID);
+                    Menu.positiveNum(id);
                 });
     }
 
@@ -86,7 +86,7 @@ public class MenuTest {
     }
 
     @Test
-    void cambiaRActividadAcabaElBucle(){
+    void cambiarActividadAcabaElBucle(){
         Obra[] todo = {obra1,obra2};
         int expected = 0;
         assertEquals(expected, Menu.cambiarActividad(0, todo).length);

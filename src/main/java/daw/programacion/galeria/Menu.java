@@ -70,15 +70,15 @@ public class Menu {
             } else if (num == SELECCION_MENU[4]) {
                 System.out.println(SELECCIONAR_ID);
                 int idSeleccion = scannerInt();
-                todo[findId(idSeleccion, todo)].visualizarDatosObra(todo);
+                todo[findId(idSeleccion, todo)].visualizarDatosObra();
             } else if (num == SELECCION_MENU[5]) {
                 System.out.println(SELECCIONAR_ID);
                 int idSeleccion = scannerInt();
-                todo[findId(idSeleccion, todo)].obtenerPrecio(todo);
+                todo[findId(idSeleccion, todo)].obtenerPrecio();
             } else if (num == SELECCION_MENU[6]) {
                 System.out.println(SELECCIONAR_ID);
                 int idSeleccion = scannerInt();
-                todo[findId(idSeleccion, todo)].imprimirEtiqueta(todo);
+                todo[findId(idSeleccion, todo)].imprimirEtiqueta()      ;
             } else if (num == SELECCION_MENU[0]) {
                 Obra[] end = new Obra[0];
                 return end;

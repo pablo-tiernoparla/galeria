@@ -46,7 +46,7 @@ public class Escultura extends Obra {
     }
 
     @Override
-    public Obra modificarEspecialidad(String spec) {
+    public Escultura modificarEspecialidad(String spec) {
         Escultura escNueva = new Escultura(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, spec);
         check(spec);
         return escNueva;

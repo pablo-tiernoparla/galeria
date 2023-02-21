@@ -42,7 +42,7 @@ public class Pictorica extends Obra {
     }
 
     @Override
-    public Obra modificarEspecialidad(String spec) {
+    public Pictorica modificarEspecialidad(String spec) {
         Pictorica picNueva = new Pictorica(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, spec);
         check(spec);
         return picNueva;
