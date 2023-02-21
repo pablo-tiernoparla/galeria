@@ -2,8 +2,6 @@ package daw.programacion.obras;
 
 import static daw.programacion.galeria.Mensajes.*;
 
-import daw.programacion.galeria.Menu;
-
 public class Pictorica extends Obra {
 
     private String tecnica;
@@ -44,8 +42,9 @@ public class Pictorica extends Obra {
     }
 
     @Override
-    public Obra modificarEspecialidad(Obra variableHolder) {
-        Pictorica picNueva = new Pictorica(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, variableHolder.nombre);
+    public Obra modificarEspecialidad(String spec) {
+        Pictorica picNueva = new Pictorica(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, spec);
+        check(spec);
         return picNueva;
     }
 
@@ -54,7 +53,6 @@ public class Pictorica extends Obra {
         Escultura esculturaNueva = new Escultura(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso,
                 this.piezas, this.desc, spec);
         esculturaNueva.check(spec);
-        this.getTecnica();
         return esculturaNueva;
     }
 }

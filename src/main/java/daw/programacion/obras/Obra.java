@@ -114,7 +114,7 @@ public abstract class Obra {
     //solo estan para hacer override
     public abstract double descuento();
     
-    public abstract Obra modificarEspecialidad(Obra variableHolder);
+    public abstract Obra modificarEspecialidad(String spec);
 
     public abstract void check(String tipo);
 
@@ -147,11 +147,11 @@ public abstract class Obra {
         return coleccionNueva;
     }
 
-    public Obra[] darDeAltaUnaObra(Obra[] todo, String tipo,String valor) throws IllegalArgumentException {
+    public Obra[] darDeAltaUnaObra(Obra[] todo, String valor) throws IllegalArgumentException {
         try {
             Obra[] placeHolder = aumentarColeccion(todo);
             Obra obraNueva = null;
-            obraNueva = this.cambiarTipo(valor);
+            obraNueva = this.modificarEspecialidad(valor);
             placeHolder[placeHolder.length - 1] = obraNueva;
             return placeHolder;
         } catch (IllegalArgumentException wrong) {
@@ -162,9 +162,6 @@ public abstract class Obra {
     }
 
     public void modificarObra(Obra[] todo, int valor, Obra variableHolder, int pos) {
-        if (valor == SELECCION[0]) {
-            return;
-        }
         if (valor == SELECCION[10]) {
             if (this.tipo.equals(PICTORICA)) {
                 Escultura escNueva = new Escultura(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, variableHolder.nombre);
@@ -186,7 +183,7 @@ public abstract class Obra {
         } else if (valor == SELECCION[6]) {
             this.setPeso(variableHolder.peso);
         } else if (valor == SELECCION[7]) {
-            todo[pos] = this.modificarEspecialidad(variableHolder);
+            todo[pos] = this.modificarEspecialidad(variableHolder.nombre);
         } else if (valor == SELECCION[8]) {
             this.setPiezas(variableHolder.piezas);
         } else if (valor == SELECCION[9]) {

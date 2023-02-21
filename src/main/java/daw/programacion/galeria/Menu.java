@@ -55,7 +55,7 @@ public class Menu {
                     System.out.println(TIPOS_TECNICA);
                 }
                 String valor = scannerString().toLowerCase();
-                Obra[] placeHolder = obraNueva.darDeAltaUnaObra(todo, tipo, valor);
+                Obra[] placeHolder = obraNueva.darDeAltaUnaObra(todo, valor);
                 return placeHolder;
             } else if (num == SELECCION_MENU[3]) {
                 System.out.println(SELECCIONAR_ID);

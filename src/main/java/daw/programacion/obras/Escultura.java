@@ -2,8 +2,6 @@ package daw.programacion.obras;
 
 import static daw.programacion.galeria.Mensajes.*;
 
-import daw.programacion.galeria.Menu;
-
 public class Escultura extends Obra {
 
     private String material;
@@ -48,8 +46,9 @@ public class Escultura extends Obra {
     }
 
     @Override
-    public Obra modificarEspecialidad(Obra variableHolder) {
-        Escultura escNueva = new Escultura(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, variableHolder.nombre);
+    public Obra modificarEspecialidad(String spec) {
+        Escultura escNueva = new Escultura(this.id, this.nombre, this.autor, this.precio, this.altura, this.peso, this.piezas, this.desc, spec);
+        check(spec);
         return escNueva;
     }
 

@@ -183,24 +183,22 @@ public class ObraTest {
     @Test
     public void darDeAltaEntraEnPictorica(){
         Obra[] todo = {obra1,obra2};
-        String tipo = "pictorica";
         String valor = "oleo";
-        obra1.darDeAltaUnaObra(todo, tipo, valor);
+        obra1.darDeAltaUnaObra(todo, valor);
     }
 
     @Test
     public void darDeAltaEntraEnEscultura(){
         Obra[] todo = {obra1,obra2};
-        String tipo = "escultura";
         String valor = "cobre";
-        obra1.darDeAltaUnaObra(todo, tipo, valor);
+        obra1.darDeAltaUnaObra(todo, valor);
     }
 
     @Test
     public void arrayNoAumentaSiFallaDarDeAlta(){
         Obra[] todo = {obra1, obra2};
         int expected = todo.length;
-        assertEquals(expected, obra1.darDeAltaUnaObra(todo, "abc", "oleo").length);
+        assertEquals(expected, obra1.darDeAltaUnaObra(todo, "osd").length);
     }
 
     @ParameterizedTest
