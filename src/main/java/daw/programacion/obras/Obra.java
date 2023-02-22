@@ -27,9 +27,6 @@ public abstract class Obra {
         this.desc = desc;
     }
 
-    public Obra() {
-    }
-
     public int getId() {
         return this.id;
     }

@@ -24,7 +24,7 @@ public class Menu {
         }
     }
 
-    public void enseñarMenu() {
+    public static void enseñarMenu() {
 
         for (int i = 0; i < SELECCION_MENU.length; i++) {
             System.out.println(SELECCION_MENU[i] + ESPACIO + OPCIONES[i]);
@@ -45,7 +45,7 @@ public class Menu {
             if (num == SELECCION_MENU[1]) {
                 Obra.visualizarObras(todo);
             } else if (num == SELECCION_MENU[2]) {
-                Escultura obraNueva = new Escultura();
+                Escultura obraNueva;
                 System.out.println(TIPO);
                 String tipo = Menu.scannerString().toLowerCase();
                 obraNueva = preguntarObra();
@@ -94,8 +94,7 @@ public class Menu {
     public static Obra[] elegirOpcion(Obra[] todo) {
         Obra[] placeHolder = todo;
         try {
-            Menu menuOpcion = new Menu();
-            menuOpcion.enseñarMenu();
+            Menu.enseñarMenu();
             placeHolder = cambiarActividad(Menu.scannerInt(), todo);
             return placeHolder;
         } catch (InputMismatchException wasString) {

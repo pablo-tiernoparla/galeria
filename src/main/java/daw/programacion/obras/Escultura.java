@@ -13,8 +13,6 @@ public class Escultura extends Obra {
         this.material = material;
     }
 
-    public Escultura(){}
-
     public String getMaterial() {
         return this.material;
     }
